@@ -1,0 +1,125 @@
+<div id="header">
+    <div id="icon-home">
+        <a href="http://localhost:3000/login/signin">&#127968;</a>
+    </div>
+    <div id="right">
+        <div id="sendmoney">
+            <a class="p1" href="http://localhost:3000/sendmoney">SEND</a>
+        </div>
+        <div id="blockheader">
+            <a class="p1" href="http://localhost:3000/blockchain">BLOCKS</a>
+        </div>
+        <div id="userinfo">
+            <div id="userimage">
+                <a>&#8473;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#header{
+    width:100vw;
+    height:17vh;
+    border-bottom:3px solid black;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#icon-home{
+    width:8%;
+    height:100%;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    display:inline-block;
+}
+#icon-home:hover{
+    background-color:gray;
+    cursor:pointer;
+}
+
+#icon-home a{
+    text-align: center;
+    font-size: 400%;
+    padding-left:5%;
+}
+
+#right{
+    width:40%;
+    height:100%;
+    display:flex;
+
+}
+
+#right #sendmoney{
+    width:40%;
+    height:100%;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#right #sendmoney:hover{
+    background-color:gray;
+    cursor: pointer;
+}
+
+#sendmoney .p1{
+    text-align: center;
+    font-size:200%;
+    font-weight:600;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    color: black;
+}
+
+
+#right #blockheader{
+    width:40%;
+    height:100%;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+#right #blockheader:hover{
+    background-color:gray;
+    cursor: pointer;
+} 
+#blockheader .p1{
+    text-align: center;
+    font-size:200%;
+    font-weight:600;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    color: black;
+}
+
+
+#right #userinfo{
+    text-align: center;
+    width:30%;
+    height:100%;
+    border-left:1px solid black;
+    border-right:1px solid black;
+}
+#right #userinfo:hover{
+    background-color:gray;
+    cursor: pointer;
+}
+#userinfo #userimage a{
+    font-size: 500%;
+    text-align: center;
+    padding-top:10%;
+}
+
+</style>

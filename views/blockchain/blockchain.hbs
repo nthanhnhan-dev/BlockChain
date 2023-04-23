@@ -1,0 +1,90 @@
+
+<div id="container">
+    <div id="panel-blockchain">
+        {{#each data}}
+            <div class="block">
+                <div class="prehash">{{this.preHash}}</div>
+                <div class="content">
+                    <p>Sender: {{this.data.from}}</p>
+                    <p>Receiver: {{this.data.to}}</p>
+                    <p>Content: {{this.data.category}}</p>
+                    <p>Amount: {{this.data.amount}}</p>
+                    <p>Time: {{this.timeStamp}}</p>
+                    <p>Block {{@index}}</p>
+                </div>
+                <div class="curhash">{{this.hash}}</div>
+            </div>
+        {{/each}}
+    </div>
+    <div hidden="true">{{data}},{{n}}</div>
+    
+</div>
+    
+<style>
+
+.block{
+    border: 1px  #ccc;
+    height:250px;
+    background-color: white;
+    text-align: center;
+    display:inline-block;
+    border:1px solid;
+    display:grid;
+    grid-template-columns:1fr 3fr 1fr;
+}
+.content{
+    border-left:1px solid black;
+    border-right:1px solid black;
+}
+
+.prehash{   
+    max-width:100px;
+    overflow-wrap:break-word;
+    padding-left:10px;
+}
+.curhash{
+    max-width:100px;
+    overflow-wrap:break-word;
+    padding-left:10px;
+}
+
+
+#container{
+    width:100%;
+    height:100vh;
+
+}
+
+#container #panel-blockchain{
+    overflow-y: scroll;
+    display:grid;
+    height:90%;
+    width:90%;
+    grid-gap:5%;
+    grid-template-columns:repeat(2, 1fr);
+    border: 1px solid;
+    margin-top:5%;
+    margin-left:5%;
+}
+
+
+
+</style>
+
+
+<script>
+    {{!-- const blocks=document.getElementById("panel-blockchain")
+    const n={{n}}
+    {{!-- const data={{data}}.map(member=>member.preHash) --}}
+    
+    console.log({{data}})
+   
+    for (let i=0;i<n;i++){
+        const block=document.createElement("div")
+        block.classList.add("block")
+        block.textContent=data[i]
+        blocks.appendChild(block)
+        console.log(123)
+    }
+    console.log(blocks) --}}
+</script>
