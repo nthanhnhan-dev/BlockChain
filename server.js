@@ -24,12 +24,11 @@ app.get('/', function (req, res) {
     res.render('home')
 })
 
-const blockRouter = require('./routes/blocks.r');
-app.use('/', blockRouter)
-const convertRouter = require('./routes/convertmoney.r');
-app.use('/', convertRouter)
-const loginRouter = require('./routes/login.r');
-app.use('/', loginRouter)
+app.use('/', require('./routes/blocks.r'))
+
+app.use('/', require('./routes/convertmoney.r'));
+
+app.use('/', require('./routes/login.r'));
 
 app.listen(port, function () {
     console.log(`Server is running at http://localhost:${port}`);

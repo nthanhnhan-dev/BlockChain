@@ -127,6 +127,8 @@
     "minimist": "^1.2.8",
     "minipass": "^5.0.0",
     "ms": "^2.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.2.4",
     "negotiator": "^0.6.3",
     "neo-async": "^2.6.2",
     "node-releases": "^2.0.10",

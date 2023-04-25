@@ -1,0 +1,9 @@
+{
+  "mysql": {
+    "host": "localhost",
+    "user": "root",
+    "database": "vidientu",
+    "password": "123456789",
+    "connectionLimit": 50
+  }
+}
