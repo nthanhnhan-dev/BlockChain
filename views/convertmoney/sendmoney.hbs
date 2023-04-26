@@ -1,7 +1,7 @@
 <div id="container1">
     </br>
     <p>Tên tài khoản : {{account}}</p>
-    <p class="p2">Số dư : {{user.Balance}}</p>
+    <p class="p2">Số dư : {{user.Balance}} $</p>
     <div class="two-buttons">
         <button type="submit" class="btn btn-primary" onclick="showContainer2()">Send money</button>
         <button type="submit" class="btn btn-primary">History</button>
@@ -9,11 +9,20 @@
 </div>
 
 <div id="container2">
-    <form>
+    <form action="/sendmoney" method="POST">
         <div>
             <div class="mb-3">
-                <label for="username" class="form-label">Receiver</label>
-                <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+                <label for="sender" class="form-label">Sender</label>
+                <input type="text" name="sender" value={{user.Owner}} placeholder={{user.Owner}} class="form-control"
+                    id="sender" aria-describedby="emailHelp" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="receiver" class="form-label">Receiver</label>
+                <select class="form-select" name="receiver" aria-label="Default select example">
+                    {{#each this.alluser}}
+                    <option name={{Owner}} value={{Owner}}>{{Owner}}</option>
+                    {{/each}}
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Your Password</label>

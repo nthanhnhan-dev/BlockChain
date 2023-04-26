@@ -14,4 +14,12 @@ module.exports = {
     addUser: (user) => {
         return db.add(table_name, user);
     },
+    getAllUser: async () => {
+        const alluser = await db.load(`select * from ${table_name}`);
+        return alluser;
+    },
+    getAllUserExceptOwner: async (user) => {
+        const alluser = await db.load(`select * from ${table_name} where Username <>'${user}'`);
+        return alluser;
+    }
 }

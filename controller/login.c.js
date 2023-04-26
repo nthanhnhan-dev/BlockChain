@@ -86,3 +86,7 @@ exports.profile = async (req, res, next) => {
         }
     )
 }
+exports.logout = async (req, res, next) => {
+    req.session.user = null;
+    res.redirect("/login/signin");
+}

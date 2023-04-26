@@ -9,6 +9,7 @@ router.get('/login/profile', BlockC.profile);
 
 router.get('/login/signup', BlockC.signup)
 router.post('/login/signup', BlockC.signup)
+router.post('/logout', BlockC.logout);
 
 
 
