@@ -77,5 +77,12 @@ exports.signup = async (req, res, next) => {
 }
 
 exports.profile = async (req, res, next) => {
+    const user = await userM.getUserByName(req.session.user);
 
+    res.render('login/profile',
+        {
+            account: req.session.user,
+            user: user[0],
+        }
+    )
 }
