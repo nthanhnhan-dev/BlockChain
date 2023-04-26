@@ -3,6 +3,8 @@ const userM = require("../model/login.m");
 const saltRounds = 10;
 exports.signin = async (req, res, next) => {
     if (req.method == "GET") {
+        // if (req.session.user) res.redirect("/");
+
         res.render('login/signin');
     }
     else if (req.method == "POST") {
@@ -18,7 +20,11 @@ exports.signin = async (req, res, next) => {
         } else {
             const compare = bcrypt.compareSync(password, userDatabase[0].Password);
             if (compare) {
-                res.render('blockchain/blockchain')
+                req.session.user = req.body.username;
+
+                res.render('blockchain/blockchain', {
+                    account: req.session.user,
+                })
             } else {
                 res.render('login/signin', {
                     error: "Password incorrect",
@@ -31,6 +37,8 @@ exports.signin = async (req, res, next) => {
 
 exports.signup = async (req, res, next) => {
     if (req.method == "GET") {
+        req.session.user = req.body.f_Username;
+
         res.render('./login/signup');
     }
     else if (req.method == "POST") {
@@ -58,10 +66,16 @@ exports.signup = async (req, res, next) => {
 
             }
             await userM.addUser(user);
+            req.session.user = req.body.username;
+
             res.redirect('/login/signin')
         }
 
 
 
     }
+}
+
+exports.profile = async (req, res, next) => {
+
 }

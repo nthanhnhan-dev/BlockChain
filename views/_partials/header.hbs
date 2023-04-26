@@ -1,125 +1,34 @@
-<div id="header">
-    <div id="icon-home">
-        <a href="http://localhost:3000/login/signin">&#127968;</a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"> <img src="../../public/logo.png" class="img-icon" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/sendmoney">SEND MONEY</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/blockchain">MY BLOCKCHAIN</a>
+                </li>
+
+            </ul>
+
+            {{#if account}}
+            <a type="button" class="btn btn-outline-secondary mr-2 row" id="account" href="/profile">Hi
+                {{account}}</a>
+            {{else}}
+            <a type="button" class="btn btn-success mr-2 font-weight-bold" href="/login/signin">LOGIN</a>
+            {{/if}}
+        </div>
     </div>
-    <div id="right">
-        <div id="sendmoney">
-            <a class="p1" href="http://localhost:3000/sendmoney">SEND</a>
-        </div>
-        <div id="blockheader">
-            <a class="p1" href="http://localhost:3000/blockchain">BLOCKS</a>
-        </div>
-        <div id="userinfo">
-            <div id="userimage">
-                <a>&#8473;</a>
-            </div>
-        </div>
-    </div>
-</div>
+</nav>
 
 <style>
-
-body{
-    margin:0;
-    padding:0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-#header{
-    width:100vw;
-    height:17vh;
-    border-bottom:3px solid black;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#icon-home{
-    width:8%;
-    height:100%;
-    border-left:1px solid black;
-    border-right:1px solid black;
-    display:inline-block;
-}
-#icon-home:hover{
-    background-color:gray;
-    cursor:pointer;
-}
-
-#icon-home a{
-    text-align: center;
-    font-size: 400%;
-    padding-left:5%;
-}
-
-#right{
-    width:40%;
-    height:100%;
-    display:flex;
-
-}
-
-#right #sendmoney{
-    width:40%;
-    height:100%;
-    border-left:1px solid black;
-    border-right:1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#right #sendmoney:hover{
-    background-color:gray;
-    cursor: pointer;
-}
-
-#sendmoney .p1{
-    text-align: center;
-    font-size:200%;
-    font-weight:600;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-    color: black;
-}
-
-
-#right #blockheader{
-    width:40%;
-    height:100%;
-    border-left:1px solid black;
-    border-right:1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} 
-#right #blockheader:hover{
-    background-color:gray;
-    cursor: pointer;
-} 
-#blockheader .p1{
-    text-align: center;
-    font-size:200%;
-    font-weight:600;
-    letter-spacing: 0.15em;
-    text-decoration: none;
-    color: black;
-}
-
-
-#right #userinfo{
-    text-align: center;
-    width:30%;
-    height:100%;
-    border-left:1px solid black;
-    border-right:1px solid black;
-}
-#right #userinfo:hover{
-    background-color:gray;
-    cursor: pointer;
-}
-#userinfo #userimage a{
-    font-size: 500%;
-    text-align: center;
-    padding-top:10%;
-}
-
+    .img-icon {
+        height: 50px;
+        width: 50px;
+    }
 </style>

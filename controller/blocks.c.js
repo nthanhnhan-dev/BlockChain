@@ -66,7 +66,9 @@ class BlockChain {
     }
 }
 
+exports.getAllBlockChain = async (req, res, next) => {
 
+}
 
 
 

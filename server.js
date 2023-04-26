@@ -28,7 +28,10 @@ app.use(
 app.set('view engine', 'hbs')
 
 app.get('/', function (req, res) {
-    res.render('home')
+    res.render('home',
+        {
+            account: req.session.user,
+        })
 })
 
 app.use('/', require('./routes/blocks.r'))
