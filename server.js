@@ -2,7 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const port = 3000;
 const app = express();
-
+var session = require("cookie-session");
 /* must */
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,7 +15,14 @@ app.engine('hbs', exphbs.engine({
     partialsDir: './views/_partials',
     extname: 'hbs'
 }))
-
+app.use(
+    session({
+        secret: "best secret key",
+        resave: true,
+        cookie: { secure: false },
+        saveUninitialized: true,
+    })
+);
 
 
 app.set('view engine', 'hbs')
