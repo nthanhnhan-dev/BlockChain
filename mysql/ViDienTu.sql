@@ -18,18 +18,29 @@ CREATE TABLE IF NOT EXISTS `vidientu`.`ACCOUNTS` (
   PRIMARY KEY (`ID_User`)
 )
 ENGINE = InnoDB;
-insert into ACCOUNTS values('1','123','Pham',100,'abc','123','pham@')
-select * from ACCOUNTS
 CREATE TABLE IF NOT EXISTS `vidientu`.`TRANSACTIONS` (
   `ID_Transaction` INT NOT NULL auto_increment,
   `From` INT NOT NULL,
   `To` INT NOT NULL,
   `Amount` double NOT NULL,
-  `DateTime` datetime,
-  `PreHash` VARCHAR(255) NOT NULL,
-  `Hash` VARBINARY(255) NOT NULL,
-  `Notes` VARCHAR(200) ,
+ 
   PRIMARY KEY (`ID_Transaction`)
 )
 ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `vidientu`.`BLOCK` (
+  `ID_Transaction` INT NOT NULL ,
+  `ID_Block` INT NOT NULL auto_increment,
+  `PreHash` VARCHAR(255) NOT NULL,
+  `Hash` VARBINARY(255) NOT NULL,
+  `Rewards` int ,
+  PRIMARY KEY (`ID_Transaction`)
+)
+
+insert into ACCOUNTS values('1','123456789','Ryu',1000000,'ryu','$2a$10$v9ojYqWPRgd59dGi2aVUFu0vlMcHnCImJ0EPnFsIBjBKLezkhFfLi','ryu@');
+insert into ACCOUNTS values('2','111111111','Jake',2000000,'jake','$2a$10$V9ua6xi7VuaT.4mLFraYQeNw/4uMVxzJZvsfvOvlkGw2XidPj7UTG','jake@');
+
+select * from ACCOUNTS;
+
+
+
 

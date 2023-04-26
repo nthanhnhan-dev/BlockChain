@@ -9,7 +9,7 @@
 </div>
 
 <div id="container2">
-    <form method="POST">
+    <form action="/pending" method="POST">
         <div>
             <div class="mb-3">
                 <label for="sender" class="form-label">Sender</label>
@@ -33,7 +33,7 @@
                     <label for="money" class="form-label">Money</label>
                     <input type="number" name="money" class="form-control" id="money" aria-describedby="emailHelp">
                 </div>
-                <a aria-current="page" href="/pending" class="btn btn-primary">Send</a>
+                <button type="submit" class="btn btn-primary"><a aria-current="page" href="/pending"></a>Send</button>
                 </br>
                 </br>
     </form>

@@ -12,6 +12,10 @@ exports.pending = async (req, res, next) => {
         })
     }
     else if (req.method == "POST") {
+        const transaction = [];
+        res.render("convertmoney/pending", {
+
+        })
     }
 }
 
@@ -28,7 +32,38 @@ exports.sendmoney = async (req, res, next) => {
             });
     }
     else if (req.method == "POST") {
-        console.log(req.body)
+        console.log("from sendmoney", req.body)
+
     }
 
+}
+
+exports.getTransactions = async (req, res, next) => {
+    const id = req.params.id
+    const transactions = await homeM.getAllTransactions(id);
+    const displayTransaction = []
+
+
+
+
+    for (let i = 0; i < transactions.length; i++) {
+        var sender = await homeM.getUserById(transactions[i].from)
+        var receiver = await homeM.getUserById(transactions[i].to)
+
+        displayTransaction[i] = {
+            id: transactions[i].id,
+            sender: sender.account_no,
+            receiver: receiver.account_no,
+            amount: transactions[i].amount,
+            time: transactions[i].trans_time,
+
+        }
+
+
+    }
+    res.render("transaction", {
+        transactions: displayTransaction,
+        title: "Transacations",
+        empty: displayTransaction.length === 0
+    })
 }
