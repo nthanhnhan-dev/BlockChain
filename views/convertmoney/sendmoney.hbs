@@ -9,7 +9,7 @@
 </div>
 
 <div id="container2">
-    <form action="/sendmoney" method="POST">
+    <form method="POST">
         <div>
             <div class="mb-3">
                 <label for="sender" class="form-label">Sender</label>
@@ -20,7 +20,7 @@
                 <label for="receiver" class="form-label">Receiver</label>
                 <select class="form-select" name="receiver" aria-label="Default select example">
                     {{#each this.alluser}}
-                    <option name={{Owner}} value={{Owner}}>{{Owner}}</option>
+                    <option name={{Username}} value={{Username}}>{{Owner}}</option>
                     {{/each}}
                 </select>
             </div>
@@ -33,7 +33,7 @@
                     <label for="money" class="form-label">Money</label>
                     <input type="number" name="money" class="form-control" id="money" aria-describedby="emailHelp">
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="showContainer1()">Send</button>
+                <a aria-current="page" href="/pending" class="btn btn-primary">Send</a>
                 </br>
                 </br>
     </form>
