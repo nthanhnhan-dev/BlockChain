@@ -4,20 +4,20 @@
             <th scope="col">#</th>
             <th scope="col">Sender</th>
             <th scope="col">Receiver</th>
-            <th scope="col">TimeStamp</th>
+            <th scope="col">Amount</th>
         </tr>
     </thead>
-    {{#each this.transactions}}
+    {{#each this.transaction}}
     <tbody>
-        <th scope="row">{{ID_Transaction}}</th>
+        <th scope="row">{{ID_TRANSACTION}}</th>
 
-        <th scope="row">{{From}}</th>
-        <td>{{To}}</td>
-        <td>{{Amount}}</td>
-        <td>{{DateTime}}</td>
+        <td>{{FROM}}</td>
+        <td>{{TO}}</td>
+        <td>{{AMOUNT}}</td>
+
 
     </tbody>
     {{/each}}
-    <a type="button" class="btn btn-success mr-2 font-weight-bold" href="/blockchain">MINING</a>
 
 </table>
+<a type="button" class="btn btn-success mr-2 font-weight-bold" href="/blockchain">MINING</a>

@@ -1,35 +1,32 @@
 const moneyM = require("../model/convertmoney.m")
 const userM = require("../model/login.m")
-
-
+const bcrypt = require("bcryptjs");
 const hash = require('crypto-js/sha256');
 const he = require('he');
 
 exports.pending = async (req, res, next) => {
     if (req.method == "GET") {
-        res.render("convertmoney/pending", {
+        const transaction_BD = await moneyM.getAllTransactions();
 
+        res.render("convertmoney/pending", {
+            transaction: transaction_BD
         })
     }
     else if (req.method == "POST") {
-
-        const username = req.body.sender
+        const sender = req.body.sender
         const password = req.body.password;
-
-        console.log(req.body)
-        const userDatabase = await userM.getUserByName(username);
-        const compare = bcrypt.compareSync(password, userDatabase[0].Password);
+        const userDatabase = await userM.getUserByName(sender);
+        const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
+        const sender_username = await moneyM.getUserNameByOwner(req.body.sender);
+        const receiver_username = await moneyM.getUserNameByOwner(req.body.receiver)
         if (compare) {
             const transaction = {
-                From: req.body.sender,
-                To: req.body.receiver,
-                Amount: req.body.money
+                FROM: (await moneyM.getAccountNoByUsername(sender_username[0].USERNAME))[0].ACCOUNT_NO,
+                TO: (await moneyM.getAccountNoByUsername(receiver_username[0].USERNAME))[0].ACCOUNT_NO,
+                AMOUNT: req.body.money
             }
             await moneyM.addTransaction(transaction);
-
-            res.render("convertmoney/pending", {
-                transaction: transaction
-            })
+            res.redirect('/sendmoney')
         }
         else {
             res.render("convertmoney/sendmoney", {
@@ -37,12 +34,8 @@ exports.pending = async (req, res, next) => {
             })
         }
 
-        res.render("convertmoney/pending", {
-
-        })
     }
 }
-
 
 exports.sendmoney = async (req, res, next) => {
     if (req.method == "GET") {

@@ -10,7 +10,6 @@ exports.signin = async (req, res, next) => {
     else if (req.method == "POST") {
         const username = req.body.username;
         const password = req.body.password;
-
         const userDatabase = await userM.getUserByName(username);
 
         if (userDatabase.length === 0) {
@@ -18,7 +17,7 @@ exports.signin = async (req, res, next) => {
                 error: "Username invalid.Create one !",
             });
         } else {
-            const compare = bcrypt.compareSync(password, userDatabase[0].Password);
+            const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
             if (compare) {
                 req.session.user = req.body.username;
 
@@ -56,12 +55,12 @@ exports.signup = async (req, res, next) => {
             const passwordHased = await bcrypt.hash(req.body.f_Password, saltRounds);
             const user = {
 
-                Account_No: req.body.f_account_no,
-                Owner: req.body.f_Name,
-                Balance: req.body.f_balance,
-                Username: req.body.f_Username,
-                Password: passwordHased,
-                Email: req.body.f_Email,
+                ACCOUNT_NO: req.body.f_account_no,
+                OWNER: req.body.f_Name,
+                BALANCE: req.body.f_balance,
+                USERNAME: req.body.f_Username,
+                PASSWORD: passwordHased,
+                EMAIL: req.body.f_Email,
 
 
             }

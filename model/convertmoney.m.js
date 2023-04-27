@@ -2,12 +2,28 @@ const db = require("../config/db");
 const transactions = "TRANSACTIONS";
 const accounts = "ACCOUNTS"
 module.exports = {
-    getAllTransactions: async (id) => {
-        const transactions = await db.any(`select *   from ${transactions} where  from = ${id}`)
-        return transactions
+    getAllTransactions: async () => {
+        const result = await db.load(`select * from  ${transactions} `)
+        return result
+    },
+    getIDByUsername: async (username) => {
+        const id = await db.load(`select ID_USER from ${accounts} where USERNAME='${username}'`)
+        return id;
     },
     getUserById: async (id) => {
-        const user = await db.oneOrNone(`select Account_No from ${transactions},${accounts} where ID_User =${id} limit 1`)
+        const user = await db.load(`select ACCOUNT_N0 from ${accounts} where ID_USER =${id} limit 1`)
         return user
     },
+    addTransaction: async (transaction) => {
+        return db.add(transactions, transaction);
+
+    },
+    getUserNameByOwner: async (owner) => {
+        const username = await db.load(`select USERNAME from ${accounts} where OWNER='${owner}'`);
+        return username;
+    },
+    getAccountNoByUsername: async (username) => {
+        const user = await db.load(`select ACCOUNT_NO from ${accounts} where USERNAME= '${username}'`)
+        return user;
+    }
 }
