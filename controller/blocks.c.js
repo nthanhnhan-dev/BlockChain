@@ -1,6 +1,7 @@
 
 const hash = require('crypto-js/sha256');
 const he = require('he');
+const blockM = require('../model/block.m')
 class Block {
     constructor(preHash, data) {
         this.preHash = preHash;
@@ -64,9 +65,31 @@ class BlockChain {
         }
         return true;
     }
+
+    minePendingTransactions() {
+
+    }
 }
 
 exports.getAllBlockChain = async (req, res, next) => {
+    // const exists = await blockM.checkExistGenesisBlock()
+    // var blockchain = 0;
+    // if (exists[0].exist === 0) {
+    //     blockchain = new BlockChain(3)
+    //     await blockM.addBlock(blockchain);
+    // }
+
+    // blockchain = await blockM.getBlockChain();
+    // console.log(blockchain)
+
+
+    const blockchain = new BlockChain(3)
+    const blockchain_in_DB = {
+
+    }
+    //await blockM.addBlock(blockchain.chain)
+    console.log(blockchain.chain)
+
 
 }
 
@@ -100,7 +123,8 @@ exports.createBlockChain = async (req, res, next) => {
     //blockchain.chain=blockchain.chain.map(member=>JSON.stringify(member))
     res.render('./blockchain/blockchain', {
         data: blockchain.chain,
-        n: blockchain.chain.length
+        n: blockchain.chain.length,
+        account: req.session.user,
     })
 
 }

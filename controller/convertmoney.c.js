@@ -12,7 +12,31 @@ exports.pending = async (req, res, next) => {
         })
     }
     else if (req.method == "POST") {
-        const transaction = [];
+
+        const username = req.body.sender
+        const password = req.body.password;
+
+        console.log(req.body)
+        const userDatabase = await userM.getUserByName(username);
+        const compare = bcrypt.compareSync(password, userDatabase[0].Password);
+        if (compare) {
+            const transaction = {
+                From: req.body.sender,
+                To: req.body.receiver,
+                Amount: req.body.money
+            }
+            await moneyM.addTransaction(transaction);
+
+            res.render("convertmoney/pending", {
+                transaction: transaction
+            })
+        }
+        else {
+            res.render("convertmoney/sendmoney", {
+                error: "Wrong password"
+            })
+        }
+
         res.render("convertmoney/pending", {
 
         })
