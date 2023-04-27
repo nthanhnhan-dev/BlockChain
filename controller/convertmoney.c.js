@@ -9,7 +9,8 @@ exports.pending = async (req, res, next) => {
         const transaction_BD = await moneyM.getAllTransactions();
 
         res.render("convertmoney/pending", {
-            transaction: transaction_BD
+            transaction: transaction_BD,
+            account: req.session.user
         })
     }
     else if (req.method == "POST") {
@@ -19,6 +20,8 @@ exports.pending = async (req, res, next) => {
         const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
         const sender_username = await moneyM.getUserNameByOwner(req.body.sender);
         const receiver_username = await moneyM.getUserNameByOwner(req.body.receiver)
+        const balance = (await userM.getUserBalance(sender_username[0].USERNAME))[0].BALANCE
+
         if (compare) {
             const transaction = {
                 FROM: (await moneyM.getAccountNoByUsername(sender_username[0].USERNAME))[0].ACCOUNT_NO,
@@ -26,11 +29,13 @@ exports.pending = async (req, res, next) => {
                 AMOUNT: req.body.money
             }
             await moneyM.addTransaction(transaction);
+            await userM.updateBalance(balance - transaction.AMOUNT, transaction.FROM)
             res.redirect('/sendmoney')
         }
         else {
             res.render("convertmoney/sendmoney", {
-                error: "Wrong password"
+                error: "Wrong password",
+                account: req.session.user
             })
         }
 
@@ -55,32 +60,11 @@ exports.sendmoney = async (req, res, next) => {
 
 }
 
-exports.getTransactions = async (req, res, next) => {
-    const id = req.params.id
-    const transactions = await homeM.getAllTransactions(id);
-    const displayTransaction = []
-
-
-
-
-    for (let i = 0; i < transactions.length; i++) {
-        var sender = await homeM.getUserById(transactions[i].from)
-        var receiver = await homeM.getUserById(transactions[i].to)
-
-        displayTransaction[i] = {
-            id: transactions[i].id,
-            sender: sender.account_no,
-            receiver: receiver.account_no,
-            amount: transactions[i].amount,
-            time: transactions[i].trans_time,
-
-        }
-
-
-    }
-    res.render("transaction", {
-        transactions: displayTransaction,
-        title: "Transacations",
-        empty: displayTransaction.length === 0
+exports.history = async (req, res, next) => {
+    const user = req.session.user
+    const transaction_BD = await moneyM.getTransactionByUsername(user);
+    res.render("convertmoney/history", {
+        account: req.session.user,
+        transaction: transaction_BD
     })
 }

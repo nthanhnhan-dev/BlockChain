@@ -9,6 +9,7 @@ router.get('/sendmoney', BlockC.sendmoney)
 router.post('/sendmoney', BlockC.sendmoney)
 router.get('/pending', BlockC.pending)
 router.post('/pending', BlockC.pending)
+router.get('/history', BlockC.history);
 
 
 

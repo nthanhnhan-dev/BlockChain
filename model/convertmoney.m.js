@@ -6,6 +6,11 @@ module.exports = {
         const result = await db.load(`select * from  ${transactions} `)
         return result
     },
+    getTransactionByUsername: async (username) => {
+        const result = await db.load(`select T.ID_TRANSACTION,T.FROM,T.TO,T.AMOUNT from ${transactions} T,${accounts} A where T.FROM=A.ACCOUNT_NO and USERNAME='${username}'`);
+        return result;
+
+    },
     getIDByUsername: async (username) => {
         const id = await db.load(`select ID_USER from ${accounts} where USERNAME='${username}'`)
         return id;

@@ -21,5 +21,13 @@ module.exports = {
     getAllUserExceptOwner: async (user) => {
         const alluser = await db.load(`select * from ${table_name} where USERNAME <>'${user}'`);
         return alluser;
+    },
+    getUserBalance: async (username) => {
+        const balance = await db.load(`select BALANCE from ${table_name} where USERNAME='${username}'`)
+        return balance
+    },
+    updateBalance: async (balance, account_no) => {
+        const result = db.load(`UPDATE ${table_name} set BALANCE=${balance} where ACCOUNT_NO='${account_no}'`)
+        return result;
     }
 }
