@@ -103,9 +103,9 @@ exports.getAllBlockChain = async (req, res, next) => {
         for (var i = 0; i < all_block.length; i++) {
             arr_blockchain.push(all_block[i])
         }
-        console.log(arr_blockchain)
         res.render("blockchain/blockchain", {
-            data: arr_blockchain
+            data: arr_blockchain,
+            account: req.session.user,
         })
 
     }
@@ -179,7 +179,6 @@ exports.createBlockChain = async (req, res, next) => {
         amount: "no limit",
         count: 3
     })
-    console.log(blockchain.chain)
     //console.log(blockchain.chain[1].printObjectstring())
     //blockchain.chain=blockchain.chain.map(member=>JSON.stringify(member))
     res.render('./blockchain/blockchain', {

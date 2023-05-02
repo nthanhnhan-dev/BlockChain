@@ -21,9 +21,8 @@ exports.signin = async (req, res, next) => {
             if (compare) {
                 req.session.user = req.body.username;
 
-                res.render('blockchain/blockchain', {
-                    account: req.session.user,
-                })
+
+                res.redirect('/blockchain')
             } else {
                 res.render('login/signin', {
                     error: "Password incorrect",
