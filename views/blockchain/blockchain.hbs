@@ -1,19 +1,19 @@
 <div id="container">
     <div id="panel-blockchain">
-        {{#each data}}
+        {{#each this.data}}
         <div class="block">
             <div class="prehash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px; ">
-                PREHASH: {{this.PREHASH}}</div>
+                PREHASH: {{PREHASH}}</div>
             <div class="content">
-                <p>Sender: {{this.Sender}}</p>
-                <p>Receiver: {{this.Receiver}}</p>
-                <p>Content: {{this.MESSAGE}}</p>
-                <p>Amount: {{this.AMOUNT}}</p>
-                <p>Time: {{this.TIMESTAMP}}</p>
-                <p>Block {{this.ID_BLOCK}}</p>
+                <p>Sender: {{Sender}}</p>
+                <p>Receiver: {{Receiver}}</p>
+                <p>Content: {{MESSAGE}}</p>
+                <p>Amount: {{AMOUNT}}</p>
+                <p>Time: {{TIMESTAMP}}</p>
+                <p>Block {{ID_BLOCK}}</p>
             </div>
             <div class="curhash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px;">
-                HASH: {{this.HASH}}</div>
+                HASH: {{HASH}}</div>
         </div>
         {{/each}}
     </div>
