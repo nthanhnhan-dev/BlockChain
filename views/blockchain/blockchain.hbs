@@ -3,7 +3,7 @@
     <div id="panel-blockchain">
         {{#each data}}
             <div class="block">
-                <div class="prehash">{{this.preHash}}</div>
+                <div class="prehash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px; ">{{this.preHash}}</div>
                 <div class="content">
                     <p>Sender: {{this.data.from}}</p>
                     <p>Receiver: {{this.data.to}}</p>
@@ -12,7 +12,7 @@
                     <p>Time: {{this.timeStamp}}</p>
                     <p>Block {{@index}}</p>
                 </div>
-                <div class="curhash">{{this.hash}}</div>
+                <div class="curhash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px;">{{this.hash}}</div>
             </div>
         {{/each}}
     </div>
@@ -24,28 +24,29 @@
 
 .block{
     border: 1px  #ccc;
-    height:250px;
     background-color: white;
     text-align: center;
+    max-width:380px;
     display:inline-block;
     border:1px solid;
     display:grid;
-    grid-template-columns:1fr 3fr 1fr;
+    grid-template-rows:1fr 5fr 1fr;
 }
 .content{
-    border-left:1px solid black;
-    border-right:1px solid black;
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+    
 }
 
 .prehash{   
-    max-width:100px;
     overflow-wrap:break-word;
-    padding-left:10px;
+    
+    
 }
 .curhash{
-    max-width:100px;
     overflow-wrap:break-word;
-    padding-left:10px;
+    
+   
 }
 
 
@@ -59,12 +60,12 @@
     overflow-y: scroll;
     display:grid;
     height:90%;
-    width:90%;
+    width:95%;
     grid-gap:5%;
-    grid-template-columns:repeat(2, 1fr);
+    grid-template-columns:repeat(3, 1fr);
     border: 1px solid;
     margin-top:5%;
-    margin-left:5%;
+    margin-left:2.5%;
 }
 
 

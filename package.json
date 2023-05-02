@@ -178,6 +178,7 @@
     "serve-static": "^1.15.0",
     "session": "^0.1.0",
     "setprototypeof": "^1.2.0",
+    "sha256": "^0.2.0",
     "shallow-clone": "^3.0.1",
     "shebang-command": "^2.0.0",
     "shebang-regex": "^3.0.0",

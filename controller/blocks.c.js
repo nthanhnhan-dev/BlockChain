@@ -118,6 +118,48 @@ exports.createBlockChain = async (req, res, next) => {
         amount: "no limit",
         count: 3
     })
+    blockchain.addBlock({
+        from: "Nguyen Thanh Nhan",
+        to: "Tran thi Kim Tien",
+        category: "10000000",
+        amount: "no limit",
+        count: 3
+    })
+    blockchain.addBlock({
+        from: "Nguyen Thanh Nhan",
+        to: "Tran thi Kim Tien",
+        category: "10000000",
+        amount: "no limit",
+        count: 3
+    })
+    blockchain.addBlock({
+        from: "Nguyen Thanh Nhan",
+        to: "Tran thi Kim Tien",
+        category: "10000000",
+        amount: "no limit",
+        count: 3
+    })
+    blockchain.addBlock({
+        from: "Nguyen Thanh Nhan",
+        to: "Tran thi Kim Tien",
+        category: "10000000",
+        amount: "no limit",
+        count: 3
+    })
+    blockchain.addBlock({
+        from: "Nguyen Thanh Nhan",
+        to: "Tran thi Kim Tien",
+        category: "10000000",
+        amount: "no limit",
+        count: 3
+    })
+    blockchain.addBlock({
+        from: "Nguyen Thanh Nhan",
+        to: "Tran thi Kim Tien",
+        category: "10000000",
+        amount: "no limit",
+        count: 3
+    })
     console.log(blockchain.chain)
     //console.log(blockchain.chain[1].printObjectstring())
     //blockchain.chain=blockchain.chain.map(member=>JSON.stringify(member))
