@@ -89,21 +89,11 @@ exports.getAllBlockChain = async (req, res, next) => {
         await blockM.addBlock(blockchain_DB);
     }
     else {
-        var transactions = [];
-        transactions = await moneyM.getAllTransactions();
-        console.log(transactions[0])
+        await blockM.getBlockChain();
+        console.log(await blockM.getBlockChain())
     }
 
-    //blockchain = await blockM.getBlockChain();
-    //console.log(blockchain.chain[0])
 
-
-    // const blockchain = new BlockChain(3)
-    // const blockchain_in_DB = {
-
-    // }
-    // //await blockM.addBlock(blockchain.chain)
-    // console.log(blockchain.chain)
 
 
 }

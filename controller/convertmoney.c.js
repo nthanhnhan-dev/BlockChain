@@ -21,7 +21,9 @@ exports.pending = async (req, res, next) => {
         const sender_username = await moneyM.getUserNameByOwner(req.body.sender);
         const receiver_username = await moneyM.getUserNameByOwner(req.body.receiver)
         const balance = (await userM.getUserBalance(sender_username[0].USERNAME))[0].BALANCE
-
+        console.log(password)
+        console.log(userDatabase[0].PASSWORD)
+        console.log(compare)
         if (compare) {
             const transaction = {
                 FROM: (await moneyM.getAccountNoByUsername(sender_username[0].USERNAME))[0].ACCOUNT_NO,
@@ -33,10 +35,15 @@ exports.pending = async (req, res, next) => {
             res.redirect('/sendmoney')
         }
         else {
-            res.render("convertmoney/sendmoney", {
+            const user = await userM.getUserByName(req.session.user);
+            const alluser = await userM.getAllUserExceptOwner(req.session.user);
+            res.render("convertmoney/wrongpassword", {
                 error: "Wrong password",
-                account: req.session.user
+                account: req.session.user,
+                user: user[0],
+                alluser: alluser,
             })
+            console.log("Wrong password")
         }
 
     }
