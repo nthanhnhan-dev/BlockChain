@@ -3,17 +3,17 @@
         {{#each data}}
         <div class="block">
             <div class="prehash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px; ">
-                {{this.PREHASH}}</div>
+                PREHASH: {{this.PREHASH}}</div>
             <div class="content">
-                <p>Sender: {{this.data.from}}</p>
-                <p>Receiver: {{this.data.to}}</p>
-                <p>Content: {{this.data.category}}</p>
-                <p>Amount: {{this.data.amount}}</p>
+                <p>Sender: {{this.Sender}}</p>
+                <p>Receiver: {{this.Receiver}}</p>
+                <p>Content: {{this.MESSAGE}}</p>
+                <p>Amount: {{this.AMOUNT}}</p>
                 <p>Time: {{this.TIMESTAMP}}</p>
-                <p>Block {{@index}}</p>
+                <p>Block {{this.ID_BLOCK}}</p>
             </div>
             <div class="curhash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px;">
-                {{this.HASH}}</div>
+                HASH: {{this.HASH}}</div>
         </div>
         {{/each}}
     </div>

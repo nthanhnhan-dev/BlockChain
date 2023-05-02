@@ -76,7 +76,8 @@ class BlockChain {
 exports.getAllBlockChain = async (req, res, next) => {
     const exists = await blockM.checkExistGenesisBlock()
     var blockchain = 0;
-    var arr_blockchain = []
+    var arr_blockchain = [];
+    var arr_transactions = [];
     if (exists[0].exist === 0) {
         blockchain = new BlockChain(3);
         const blockchain_DB = {
@@ -88,19 +89,33 @@ exports.getAllBlockChain = async (req, res, next) => {
 
         }
         await blockM.addBlock(blockchain_DB);
+        arr_blockchain = await blockM.getBlockChain();
+        res.render("blockchain/blockchain", {
+            data: arr_blockchain
+        })
     }
     else {
-        arr_blockchain = await blockM.getBlockChain();
+
+        arr_transactions = await moneyM.getAllTransactions();
+        const genesis_block = await blockM.getGenesisBlock()
+        arr_blockchain.push(genesis_block)
+        arr_blockchain.push(await blockM.getBlockChainWithTransactions())
+
+        console.log(arr_blockchain)
         if (arr_blockchain.length === 0) {
+
             res.render("blockchain/blockchain", {
-                data: await blockM.getGenesisBlock()
+                data: genesis_block
+            })
+        }
+        else {
+            res.render("blockchain/blockchain", {
+                data: arr_blockchain
             })
         }
     }
-    console.log(arr_blockchain)
-    res.render("blockchain/blockchain", {
-        data: arr_blockchain
-    })
+
+
 
 
 

@@ -1,5 +1,6 @@
 const moneyM = require("../model/convertmoney.m")
 const userM = require("../model/login.m")
+const blockM = require("../model/block.m")
 const bcrypt = require("bcryptjs");
 const hash = require('crypto-js/sha256');
 const he = require('he');
@@ -27,7 +28,8 @@ exports.pending = async (req, res, next) => {
             const transaction = {
                 FROM: (await moneyM.getAccountNoByUsername(sender_username[0].USERNAME))[0].ACCOUNT_NO,
                 TO: (await moneyM.getAccountNoByUsername(receiver_username[0].USERNAME))[0].ACCOUNT_NO,
-                AMOUNT: req.body.money
+                AMOUNT: req.body.money,
+                MESSAGE: req.body.message
             }
             if (balance < req.body.money) {
                 res.render("convertmoney/wrongpassword", {
@@ -40,6 +42,7 @@ exports.pending = async (req, res, next) => {
             else {
                 await moneyM.addTransaction(transaction);
                 await userM.updateBalance(balance - transaction.AMOUNT, transaction.FROM)
+
                 res.redirect('/sendmoney')
             }
 

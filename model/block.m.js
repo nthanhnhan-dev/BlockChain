@@ -5,7 +5,15 @@ const table_name_accounts = 'ACCOUNTS'
 
 module.exports = {
     getBlockChain: async () => {
-        const blockchain = await db.load(`SELECT * FROM ${table_name_block},${table_name_transaction} WHERE ${table_name_block}.ID_TRANSACTION = ${table_name_transaction}.ID_TRANSACTION`);
+        const blockchain = await db.load(`SELECT * FROM ${table_name_block}`);
+        return blockchain;
+    },
+    getBlockChainWithTransactions: async () => {
+        const blockchain = await db.load(`SELECT ${table_name_block}.*,${table_name_transaction}.*,Sender.OWNER as Sender,Receiver.OWNER as Receiver
+        FROM ${table_name_block},${table_name_transaction},${table_name_accounts} as Sender,${table_name_accounts} as Receiver 
+        WHERE ${table_name_block}.ID_TRANSACTION = ${table_name_transaction}.ID_TRANSACTION
+            AND ${table_name_transaction}.FROM=Sender.ACCOUNT_NO
+            AND ${table_name_transaction}.TO=Receiver.ACCOUNT_NO`);
         return blockchain;
     },
     getGenesisBlock: async () => {
