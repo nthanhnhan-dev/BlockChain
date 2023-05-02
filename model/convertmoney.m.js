@@ -30,5 +30,7 @@ module.exports = {
     getAccountNoByUsername: async (username) => {
         const user = await db.load(`select ACCOUNT_NO from ${accounts} where USERNAME= '${username}'`)
         return user;
-    }
+    },
+
 }
+

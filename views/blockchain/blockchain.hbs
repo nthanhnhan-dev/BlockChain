@@ -1,91 +1,72 @@
-
 <div id="container">
     <div id="panel-blockchain">
         {{#each data}}
-            <div class="block">
-                <div class="prehash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px; ">{{this.preHash}}</div>
-                <div class="content">
-                    <p>Sender: {{this.data.from}}</p>
-                    <p>Receiver: {{this.data.to}}</p>
-                    <p>Content: {{this.data.category}}</p>
-                    <p>Amount: {{this.data.amount}}</p>
-                    <p>Time: {{this.timeStamp}}</p>
-                    <p>Block {{@index}}</p>
-                </div>
-                <div class="curhash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px;">{{this.hash}}</div>
+        <div class="block">
+            <div class="prehash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px; ">
+                {{this.PREHASH}}</div>
+            <div class="content">
+                <p>Sender: {{this.data.from}}</p>
+                <p>Receiver: {{this.data.to}}</p>
+                <p>Content: {{this.data.category}}</p>
+                <p>Amount: {{this.data.amount}}</p>
+                <p>Time: {{this.TIMESTAMP}}</p>
+                <p>Block {{@index}}</p>
             </div>
+            <div class="curhash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px;">
+                {{this.HASH}}</div>
+        </div>
         {{/each}}
     </div>
     <div hidden="true">{{data}},{{n}}</div>
-    
+
 </div>
-    
+
 <style>
-
-.block{
-    border: 1px  #ccc;
-    background-color: white;
-    text-align: center;
-    max-width:380px;
-    display:inline-block;
-    border:1px solid;
-    display:grid;
-    grid-template-rows:1fr 5fr 1fr;
-}
-.content{
-    border-top:1px solid black;
-    border-bottom:1px solid black;
-    
-}
-
-.prehash{   
-    overflow-wrap:break-word;
-    
-    
-}
-.curhash{
-    overflow-wrap:break-word;
-    
-   
-}
-
-
-#container{
-    width:100%;
-    height:100vh;
-
-}
-
-#container #panel-blockchain{
-    overflow-y: scroll;
-    display:grid;
-    height:90%;
-    width:95%;
-    grid-gap:5%;
-    grid-template-columns:repeat(3, 1fr);
-    border: 1px solid;
-    margin-top:5%;
-    margin-left:2.5%;
-}
-
-
-
-</style>
-
-
-<script>
-    {{!-- const blocks=document.getElementById("panel-blockchain")
-    const n={{n}}
-    {{!-- const data={{data}}.map(member=>member.preHash) --}}
-    
-    console.log({{data}})
-   
-    for (let i=0;i<n;i++){
-        const block=document.createElement("div")
-        block.classList.add("block")
-        block.textContent=data[i]
-        blocks.appendChild(block)
-        console.log(123)
+    .block {
+        border: 1px #ccc;
+        background-color: white;
+        text-align: center;
+        max-width: 380px;
+        display: inline-block;
+        border: 1px solid;
+        display: grid;
+        grid-template-rows: 1fr 5fr 1fr;
     }
-    console.log(blocks) --}}
-</script>
+
+    .content {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+
+    }
+
+    .prehash {
+        overflow-wrap: break-word;
+
+
+    }
+
+    .curhash {
+        overflow-wrap: break-word;
+
+
+    }
+
+
+    #container {
+        width: 100%;
+        height: 100vh;
+
+    }
+
+    #container #panel-blockchain {
+        overflow-y: scroll;
+        display: grid;
+        height: 90%;
+        width: 95%;
+        grid-gap: 5%;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid;
+        margin-top: 5%;
+        margin-left: 2.5%;
+    }
+</style>

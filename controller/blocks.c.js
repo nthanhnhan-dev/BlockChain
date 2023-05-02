@@ -2,6 +2,8 @@
 const hash = require('crypto-js/sha256');
 const he = require('he');
 const blockM = require('../model/block.m')
+const moneyM = require("../model/convertmoney.m")
+
 class Block {
     constructor(preHash, data) {
         this.preHash = preHash;
@@ -72,23 +74,35 @@ class BlockChain {
 }
 
 exports.getAllBlockChain = async (req, res, next) => {
-    // const exists = await blockM.checkExistGenesisBlock()
-    // var blockchain = 0;
-    // if (exists[0].exist === 0) {
-    //     blockchain = new BlockChain(3)
-    //     await blockM.addBlock(blockchain);
-    // }
+    const exists = await blockM.checkExistGenesisBlock()
+    var blockchain = 0;
+    var arr_blockchain = []
+    if (exists[0].exist === 0) {
+        blockchain = new BlockChain(3);
+        const blockchain_DB = {
+            ID_TRANSACTION: null,
+            ID_BLOCK: 0,
+            PREHASH: blockchain.chain[0].preHash,
+            HASH: blockchain.chain[0].hash,
+            TIMESTAMP: blockchain.chain[0].timeStamp
 
-    // blockchain = await blockM.getBlockChain();
-    // console.log(blockchain)
-
-
-    const blockchain = new BlockChain(3)
-    const blockchain_in_DB = {
-
+        }
+        await blockM.addBlock(blockchain_DB);
     }
-    //await blockM.addBlock(blockchain.chain)
-    console.log(blockchain.chain)
+    else {
+        arr_blockchain = await blockM.getBlockChain();
+        if (arr_blockchain.length === 0) {
+            res.render("blockchain/blockchain", {
+                data: await blockM.getGenesisBlock()
+            })
+        }
+    }
+    console.log(arr_blockchain)
+    res.render("blockchain/blockchain", {
+        data: arr_blockchain
+    })
+
+
 
 
 }
