@@ -31,8 +31,6 @@ module.exports = {
         const user = await db.load(`select ACCOUNT_NO from ${accounts} where USERNAME= '${username}'`)
         return user;
     },
-    // getMoneyByAccountNo: async (account_no) => {
-    //     const balance = await db.load(`select BALANCE from ${accounts}where ACCOUNT_NO=${account_no}`)
-    //     return balance;
-    // }
+
 }
+
