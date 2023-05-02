@@ -21,29 +21,37 @@ exports.pending = async (req, res, next) => {
         const sender_username = await moneyM.getUserNameByOwner(req.body.sender);
         const receiver_username = await moneyM.getUserNameByOwner(req.body.receiver)
         const balance = (await userM.getUserBalance(sender_username[0].USERNAME))[0].BALANCE
-        console.log(password)
-        console.log(userDatabase[0].PASSWORD)
-        console.log(compare)
+        const user = await userM.getUserByName(req.session.user);
+        const alluser = await userM.getAllUserExceptOwner(req.session.user);
         if (compare) {
             const transaction = {
                 FROM: (await moneyM.getAccountNoByUsername(sender_username[0].USERNAME))[0].ACCOUNT_NO,
                 TO: (await moneyM.getAccountNoByUsername(receiver_username[0].USERNAME))[0].ACCOUNT_NO,
                 AMOUNT: req.body.money
             }
-            await moneyM.addTransaction(transaction);
-            await userM.updateBalance(balance - transaction.AMOUNT, transaction.FROM)
-            res.redirect('/sendmoney')
+            if (balance < req.body.money) {
+                res.render("convertmoney/wrongpassword", {
+                    errorBalance: "Not enough money",
+                    account: req.session.user,
+                    user: user[0],
+                    alluser: alluser,
+                })
+            }
+            else {
+                await moneyM.addTransaction(transaction);
+                await userM.updateBalance(balance - transaction.AMOUNT, transaction.FROM)
+                res.redirect('/sendmoney')
+            }
+
         }
         else {
-            const user = await userM.getUserByName(req.session.user);
-            const alluser = await userM.getAllUserExceptOwner(req.session.user);
+
             res.render("convertmoney/wrongpassword", {
-                error: "Wrong password",
+                errorPassword: "Wrong password",
                 account: req.session.user,
                 user: user[0],
                 alluser: alluser,
             })
-            console.log("Wrong password")
         }
 
     }
