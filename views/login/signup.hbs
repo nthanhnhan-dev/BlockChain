@@ -35,26 +35,26 @@
                                     <label class="form-label" for="reg_email"><b>Email</b> </label>
 
                                     <input type="text" name="f_Email" class="form-control form-control-lg"
-                                        placeholder="asb@gmail.com" id="reg_email" />
+                                        placeholder="asb@gmail.com" id="reg_email" onchange="regexemail()" />
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="reg_account_no"><b>Account Number</b> </label>
                                     <input type="text" name="f_account_no" class="form-control form-control-lg"
-                                        placeholder="123456789" id="reg_account_no" />
+                                        placeholder="123456789" id="reg_account_no" onchange="regexnumberphone()"/>
 
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="reg_balance"><b>Balance</b> </label>
                                     <input type="text" name="f_balance" class="form-control form-control-lg"
-                                        placeholder="100000" id="reg_balance" />
+                                        placeholder="100000" id="reg_balance" onchange="regexbalance()"/>
 
                                 </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="reg_password">
                                         <b>Password</b> </label>
                                     <input type="password" name="f_Password" class="form-control form-control-lg"
-                                        id="reg_password" />
+                                        id="reg_password" onchange="checkpassword()" />
 
                                 </div>
 
@@ -62,7 +62,7 @@
                                     <label class="form-label" for="reg_confirmpassword"><b>Confirm password</b></label>
 
                                     <input type="password" name="f_Confirmpassword" class="form-control form-control-lg"
-                                        id="reg_confirmpassword" />
+                                        id="reg_confirmpassword" onchange="checkpassword()" />
                                 </div>
 
 
@@ -84,3 +84,54 @@
         </div>
     </div>
 </section>
+<script>
+    function regexemail(){
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        emailvalue=document.getElementById("reg_email").value;
+        email=document.getElementById("reg_email");
+        if (emailRegex.test(emailvalue)){
+            email.style.color="Black"
+        }
+        else{
+            email.style.color="red"
+        }
+    }
+    function regexnumberphone(){
+        let phoneRegex = /^0[0-9]{9,10}$/;
+        phonevalue=document.getElementById("reg_account_no").value;
+        phone=document.getElementById("reg_account_no");
+        if (phoneRegex.test(phonevalue)){
+            phone.style.color="Black"
+        }
+        else{
+            console.log(phonevalue)
+            phone.style.color="red"
+        }
+    }
+    function regexbalance(){
+        let balanceRegex = /^[0-9]+$/;
+        balancevalue=document.getElementById("reg_balance").value;
+        balance=document.getElementById("reg_balance");
+        if (balanceRegex.test(balancevalue)){
+            balance.style.color="Black"
+        }
+        else{
+            balance.style.color="red"
+        }
+    }
+   
+    function checkpassword(){
+        pw=document.getElementById("reg_password")
+        cf_pw=document.getElementById("reg_confirmpassword")
+        if (pw.value==cf_pw.value){
+            console.log(pw.value)
+            console.log(cf_pw.value)
+            cf_pw.style.color="Black"
+        }
+        else{
+            console.log(pw.value+'aaa')
+            console.log(cf_pw.value+'aaa')
+            cf_pw.style.color="red"
+        }
+    }
+</script>
