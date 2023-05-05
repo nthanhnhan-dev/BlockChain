@@ -17,8 +17,10 @@ exports.pending = async (req, res, next) => {
     else if (req.method == "POST") {
         const sender = req.body.sender
         const password = req.body.password;
+        
         const userDatabase = await userM.getUserByName(sender);
         const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
+        
         const sender_username = await moneyM.getUserNameByOwner(req.body.sender);
         const receiver_username = await moneyM.getUserNameByOwner(req.body.receiver)
         const balance = (await userM.getUserBalance(sender_username[0].USERNAME))[0].BALANCE
