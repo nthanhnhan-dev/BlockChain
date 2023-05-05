@@ -28,4 +28,13 @@ module.exports = {
         select count(*) as exist from ${table_name_block}  `);
         return exist;
     },
+    getPreHash: async () => {
+        const prehash = await db.load(`SELECT HASH FROM ${table_name_block} ORDER BY ${table_name_block}.ID_BLOCK DESC LIMIT 1;`)
+        return prehash;
+    },
+    checkExistTransationInBlock: async (id_transaction) => {
+        const exist = await db.load(` 
+        select count(*) as exist from ${table_name_block} where ${table_name_block}.ID_TRANSACTION=${id_transaction}`);
+        return exist;
+    }
 }

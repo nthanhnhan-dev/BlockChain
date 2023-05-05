@@ -1,23 +1,25 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Sender</th>
-            <th scope="col">Receiver</th>
-            <th scope="col">Amount</th>
-        </tr>
-    </thead>
-    {{#each this.transaction}}
-    <tbody>
-        <th scope="row">{{ID_TRANSACTION}}</th>
+<form action="/blockchain" method="POST">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Sender</th>
+                <th scope="col">Receiver</th>
+                <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        {{#each this.transaction}}
+        <tbody>
+            <th scope="row">{{ID_TRANSACTION}}</th>
 
-        <td>{{FROM}}</td>
-        <td>{{TO}}</td>
-        <td>{{AMOUNT}}</td>
+            <td>{{FROM}}</td>
+            <td>{{TO}}</td>
+            <td>{{AMOUNT}}</td>
 
 
-    </tbody>
-    {{/each}}
+        </tbody>
+        {{/each}}
 
-</table>
-<a type="button" class="btn btn-info mr-2 font-weight-bold" href="/blockchain">MINING</a>
+    </table>
+    <input type="submit" class="btn btn-info mr-2 font-weight-bold" value="MINING">
+</form>
