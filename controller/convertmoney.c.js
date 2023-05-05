@@ -8,7 +8,6 @@ const he = require('he');
 exports.pending = async (req, res, next) => {
     if (req.method == "GET") {
         const transaction_BD = await moneyM.getAllTransactions();
-        console.log(transaction_BD)
         res.render("convertmoney/pending", {
             transaction: transaction_BD,
             account: req.session.user
@@ -19,17 +18,20 @@ exports.pending = async (req, res, next) => {
         const password = req.body.password;
 
         const userDatabase = await userM.getUserByName(sender);
+
+        //console.log(userDatabase)
         const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
 
-        const sender_username = await moneyM.getUserNameByOwner(req.body.sender);
-        const receiver_username = await moneyM.getUserNameByOwner(req.body.receiver)
-        const balance = (await userM.getUserBalance(sender_username[0].USERNAME))[0].BALANCE
+        const sender_username = req.body.sender;
+        const receiver_username = req.body.receiver
+
+        const balance = (await userM.getUserBalance(sender_username))[0].BALANCE
         const user = await userM.getUserByName(req.session.user);
         const alluser = await userM.getAllUserExceptOwner(req.session.user);
         if (compare) {
             const transaction = {
-                FROM: (await moneyM.getAccountNoByUsername(sender_username[0].USERNAME))[0].ACCOUNT_NO,
-                TO: (await moneyM.getAccountNoByUsername(receiver_username[0].USERNAME))[0].ACCOUNT_NO,
+                FROM: (await moneyM.getAccountNoByUsername(sender_username))[0].ACCOUNT_NO,
+                TO: (await moneyM.getAccountNoByUsername(receiver_username))[0].ACCOUNT_NO,
                 AMOUNT: req.body.money,
                 MESSAGE: req.body.message
             }
