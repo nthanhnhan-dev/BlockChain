@@ -17,7 +17,7 @@
                                 </div>
                             </div>
                             {{/if}}
-                            <form id="formRegister" method="POST" action="">
+                            <form id="formRegister" method="POST" action="" onchange="checkbutton()">
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="reg_name"><b>Name</b> </label>
                                     <input type="text" name="f_Name" class="form-control form-control-lg"
@@ -28,7 +28,7 @@
                                     <label class="form-label" for="reg_username"><b>Username</b> </label>
 
                                     <input type="text" name="f_Username" class="form-control form-control-lg"
-                                        id="reg_username" />
+                                        id="reg_username"  placeholder="username (no space)" onchange="regexuser()"/>
                                 </div>
 
                                 <div class="form-outline mb-4">
@@ -68,8 +68,8 @@
 
 
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                                        type="submit">Register</button>
+                                    <button id="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                                        type="submit" >Register</button>
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
@@ -85,15 +85,34 @@
     </div>
 </section>
 <script>
+    var checkuser=false,checkemail=false,checkphone=false,checkbalance=false,checkpw=false;
+
+    function regexuser(){
+        let userRegex = /^\S+$/;
+        uservalue=document.getElementById("reg_username").value;
+        user=document.getElementById("reg_username");
+        if (userRegex.test(uservalue)){
+            user.style.color="Black"
+            checkuser=true;
+
+        }
+        else{
+            user.style.color="red"
+            checkuser=false;
+        }
+    }
+
     function regexemail(){
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         emailvalue=document.getElementById("reg_email").value;
         email=document.getElementById("reg_email");
         if (emailRegex.test(emailvalue)){
             email.style.color="Black"
+            checkemail=true;
         }
         else{
             email.style.color="red"
+            checkemail=false;
         }
     }
     function regexnumberphone(){
@@ -102,10 +121,12 @@
         phone=document.getElementById("reg_account_no");
         if (phoneRegex.test(phonevalue)){
             phone.style.color="Black"
+            checkphone=true;
         }
         else{
             console.log(phonevalue)
             phone.style.color="red"
+            checkphone=false;
         }
     }
     function regexbalance(){
@@ -114,9 +135,11 @@
         balance=document.getElementById("reg_balance");
         if (balanceRegex.test(balancevalue)){
             balance.style.color="Black"
+            checkbalance=true;
         }
         else{
             balance.style.color="red"
+            checkbalance=false;
         }
     }
    
@@ -127,11 +150,22 @@
             console.log(pw.value)
             console.log(cf_pw.value)
             cf_pw.style.color="Black"
+            checkpw=true;
         }
         else{
             console.log(pw.value+'aaa')
             console.log(cf_pw.value+'aaa')
             cf_pw.style.color="red"
+            checkpw=false;
+        }
+    }
+
+    function checkbutton(){
+        if(checkuser&&checkemail&&checkbalance&&checkpw&&checkphone){
+           document.getElementById("button").disabled=false;
+        }
+        else{
+            document.getElementById("button").disabled=true;
         }
     }
 </script>
