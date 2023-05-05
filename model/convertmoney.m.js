@@ -1,9 +1,13 @@
 const db = require("../config/db");
 const transactions = "TRANSACTIONS";
 const accounts = "ACCOUNTS"
+//WHERE AND ${ transactions }.FROM = Sender.ACCOUNT_NO AND ${ transactions }.TO = Receiver.ACCOUNT_NO//
 module.exports = {
     getAllTransactions: async () => {
-        const result = await db.load(`select * from  ${transactions} `)
+        //const result = await db.load(`select * from   ${transactions},${transactions} where ${transactions}.FROM=${accounts}.ACCOUNT_NO `)
+        const result = await db.load(`SELECT ${transactions}.*,Sender.OWNER as Sender,Receiver.OWNER as Receiver
+        FROM ${transactions},${accounts} as Sender,${accounts} as Receiver WHERE  ${transactions}.FROM = Sender.ACCOUNT_NO AND ${transactions}.TO = Receiver.ACCOUNT_NO
+       `);
         return result
     },
     getTransactionByUsername: async (username) => {
