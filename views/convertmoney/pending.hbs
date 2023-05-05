@@ -1,10 +1,20 @@
 <form action="/blockchain" method="POST">
+    {{#if announce}}
+    <div class="alert alert-warning d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+            <use xlink:href="#exclamation-triangle-fill" />
+        </svg>
+        <div>
+            {{announce}}
+        </div>
+    </div>
+    {{/if}}
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Sender</th>
-                <th scope="col">Receiver</th>
+                <th scope="col">Sender(ACCOUNT_NO)</th>
+                <th scope="col">Receiver(ACCOUNT_NO)</th>
                 <th scope="col">Amount</th>
             </tr>
         </thead>
@@ -12,8 +22,8 @@
         <tbody>
             <th scope="row">{{ID_TRANSACTION}}</th>
 
-            <td>{{FROM}}</td>
-            <td>{{TO}}</td>
+            <td>{{Sender}}({{FROM}})</td>
+            <td>{{Receiver}}({{TO}})</td>
             <td>{{AMOUNT}}</td>
 
 

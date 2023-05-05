@@ -171,7 +171,7 @@
                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                                 alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                            <h5>{{user.OWNER}}</h5>
+                            <h5>{{user.USERNAME}}</h5>
                             <p>{{user.BALANCE}}$</p>
 
                         </div>
@@ -211,14 +211,14 @@
         <div>
             <div class="mb-3">
                 <label for="sender" class="form-label">Sender</label>
-                <input type="text" name="sender" value="{{user.OWNER}}" placeholder={{user.OWNER}} class="form-control"
-                    id="sender" aria-describedby="emailHelp" readonly>
+                <input type="text" name="sender" value={{user.USERNAME}} class="form-control"
+                    aria-describedby="emailHelp" readonly>
             </div>
             <div class="mb-3">
                 <label for="receiver" class="form-label">Receiver</label>
                 <select class="form-select" name="receiver" aria-label="Default select example">
                     {{#each this.alluser}}
-                    <option name={{USERNAME}} value={{USERNAME}}>{{OWNER}}</option>
+                    <option value={{USERNAME}}>{{USERNAME}}</option>
                     {{/each}}
                 </select>
             </div>

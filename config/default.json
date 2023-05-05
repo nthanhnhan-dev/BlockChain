@@ -3,7 +3,7 @@
     "host": "localhost",
     "user": "root",
     "database": "vidientu",
-    "password": "1234567890",
+    "password": "123456789",
     "connectionLimit": 50
   }
 }
