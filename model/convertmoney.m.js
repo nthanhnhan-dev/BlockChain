@@ -7,12 +7,18 @@ module.exports = {
         //const result = await db.load(`select * from   ${transactions},${transactions} where ${transactions}.FROM=${accounts}.ACCOUNT_NO `)
         const result = await db.load(`SELECT ${transactions}.*,Sender.OWNER as Sender,Receiver.OWNER as Receiver
         FROM ${transactions},${accounts} as Sender,${accounts} as Receiver WHERE  ${transactions}.FROM = Sender.ACCOUNT_NO AND ${transactions}.TO = Receiver.ACCOUNT_NO
-       `);
+       ORDER BY ${transactions}.ID_TRANSACTION ASC`);
         return result
     },
     getTransactionByUsername: async (username) => {
-        const result = await db.load(`select T.ID_TRANSACTION,T.FROM,T.TO,T.AMOUNT from ${transactions} T,${accounts} A where T.FROM=A.ACCOUNT_NO and USERNAME='${username}'`);
-        return result;
+        // const result = await db.load(`select * from ${transactions} T,${accounts} A where T.FROM=A.ACCOUNT_NO and USERNAME='${username}'`);
+        // return result;
+        const result = await db.load(`SELECT ${transactions}.*,Sender.OWNER as Sender,Receiver.OWNER as Receiver
+        FROM ${transactions},${accounts} as Sender,${accounts} as Receiver WHERE  ${transactions}.FROM = Sender.ACCOUNT_NO 
+        AND ${transactions}.TO = Receiver.ACCOUNT_NO
+        AND Sender.USERNAME = '${username}'
+       ORDER BY ${transactions}.ID_TRANSACTION ASC`);
+        return result
 
     },
     getIDByUsername: async (username) => {
