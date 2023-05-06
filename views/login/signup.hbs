@@ -133,7 +133,7 @@
         let balanceRegex = /^[0-9]+$/;
         balancevalue=document.getElementById("reg_balance").value;
         balance=document.getElementById("reg_balance");
-        if (balanceRegex.test(balancevalue)){
+        if (balanceRegex.test(balancevalue)&& parseInt(balancevalue) > 100000){
             balance.style.color="Black"
             checkbalance=true;
         }
