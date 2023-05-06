@@ -207,7 +207,7 @@
 
 
 <div id="container2">
-    <form action="/pending" method="POST">
+    <form id="payment-form" action="/pending" method="POST">
         <div>
             <div class="mb-3">
                 <label for="sender" class="form-label">Sender</label>
@@ -245,14 +245,16 @@
                     <label for="message" class="form-label">Message</label>
                     <input type="text" name="message" class="form-control" id="message" aria-describedby="emailHelp">
                 </div>
-                <button type="submit" class="btn btn-primary"><a aria-current="page" href="/pending"></a>Send</button>
+                {{!-- <button type="submit" class="btn btn-primary"><a aria-current="page" href="/pending"></a>Send</button> --}}
+                <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn muốn chuyển tiền không?')"><a aria-current="page" href="/pending"></a>Send</button>
+
                 </br>
                 </br>
             </div>
     </form>
 </div>
 
-<div id="confirm-form">
+<div id="confirm-form" style="display:none">
     <p>Bạn có chắc chắn muốn chuyển tiền không?</p>
     <button type="button" id="confirm-yes">Có</button>
     <button type="button" id="confirm-no">Không</button>
@@ -318,5 +320,5 @@
         container1.style.display = "block";
         container2.style.display = "none";
     }
-
+   
 </script>
