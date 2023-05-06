@@ -30,8 +30,49 @@
         {{/each}}
     </div>
     <div hidden="true">{{data}},{{n}}</div>
-
+    <div id="footer"></div>
 </div>
+
+
+<script>
+    function changeColor() {
+        const listcolor=['red','blue','purple','green','brown']
+        const n=listcolor.length;
+        const hashBlocks = document.querySelectorAll('.curhash');
+
+        
+        hashBlocks.forEach((block, index) => {
+        // Lấy khối hash của khối tiếp theo
+        block.style.color=listcolor[index%n]
+        const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
+        nextBlock.style.color=listcolor[index%n]
+
+        {{!-- // Thay đổi màu sắc của khối hash hiện tại
+        if (index % 3 === 0) {
+            block.style.color = 'red';
+        } else if (index % 3 === 1) {
+            block.style.color = 'yellow';
+        } else {
+            block.style.color = 'green';
+        }
+        
+        // Thay đổi màu sắc của khối prehash tiếp theo
+        if (nextBlock) {
+            if (index % 3 === 0) {
+            nextBlock.style.color = 'red';
+            } else if (index % 3 === 1) {
+            nextBlock.style.color = 'yellow';
+            } else {
+            nextBlock.style.color = 'green';
+            }
+        } --}}
+        });
+    }
+    window.addEventListener('load', () => {
+        changeColor();
+    });
+   
+</script>
 
 <style>
     .block {
@@ -56,6 +97,7 @@
         border:0;
         padding:0;
         display: inline-block;
+        color:black;
     }
 
     .prehash {
@@ -90,28 +132,9 @@
         margin-top: 5%;
         margin-left: 2.5%;
     }
-</style>
 
-<script>
-    function changeColor() {
-        const blocks = document.querySelectorAll('.block');
-        console.log(blocks.length)
-        for (let i = 0; i < blocks.length+1; i++) {
-            const prehash = blocks[i+1].querySelector('.prehash');
-            const curhash = blocks[i].querySelector('.curhash');
-            let color = 'red';
-
-            if (prehash.style.backgroundColor === 'red') {
-                color = 'orange';
-            } 
-            else if (prehash.style.backgroundColor === 'orange') {
-                color = 'yellow';
-            }
-            curhash.style.backgroundColor = color;
-        }
+    #footer{
+        height:10vh;
+        widht:100vw;
     }
-    window.addEventListener('load', () => {
-        changeColor();
-    });
-   
-</script>
+</style>
