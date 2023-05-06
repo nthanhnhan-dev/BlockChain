@@ -13,7 +13,8 @@ module.exports = {
         FROM ${table_name_block},${table_name_transaction},${table_name_accounts} as Sender,${table_name_accounts} as Receiver 
         WHERE ${table_name_block}.ID_TRANSACTION = ${table_name_transaction}.ID_TRANSACTION
             AND ${table_name_transaction}.FROM=Sender.ACCOUNT_NO
-            AND ${table_name_transaction}.TO=Receiver.ACCOUNT_NO`);
+            AND ${table_name_transaction}.TO=Receiver.ACCOUNT_NO
+            ORDER BY ${table_name_transaction}.ID_TRANSACTION ASC`);
         return blockchain;
     },
     getGenesisBlock: async () => {

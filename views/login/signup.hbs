@@ -28,7 +28,7 @@
                                     <label class="form-label" for="reg_username"><b>Username</b> </label>
 
                                     <input type="text" name="f_Username" class="form-control form-control-lg"
-                                        id="reg_username"  placeholder="username (no space)" onchange="regexuser()"/>
+                                        id="reg_username" placeholder="username (no space)" onchange="regexuser()" />
                                 </div>
 
                                 <div class="form-outline mb-4">
@@ -41,7 +41,7 @@
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="reg_account_no"><b>Account Number</b> </label>
                                     <input type="text" name="f_account_no" class="form-control form-control-lg"
-                                        placeholder="123456789" id="reg_account_no" onchange="regexnumberphone()" />
+                                        placeholder="10-11 numbers" id="reg_account_no" onchange="regexnumberphone()" />
 
                                 </div>
                                 <div class="form-outline mb-4">
@@ -68,8 +68,9 @@
 
 
                                 <div class="d-flex justify-content-center">
-                                    <button id="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                                        type="submit" >Register</button>
+                                    <button id="button"
+                                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                                        type="submit">Register</button>
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
@@ -85,94 +86,61 @@
     </div>
 </section>
 <script>
-<<<<<<< HEAD
+    var checkuser = false, checkemail = false, checkphone = false, checkbalance = false, checkpw = false;
+
+    function regexuser() {
+        let userRegex = /^\S+$/;
+        uservalue = document.getElementById("reg_username").value;
+        user = document.getElementById("reg_username");
+        if (userRegex.test(uservalue)) {
+            user.style.color = "Black"
+            checkuser = true;
+
+        }
+        else {
+            user.style.color = "red"
+            checkuser = false;
+        }
+    }
+
     function regexemail() {
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         emailvalue = document.getElementById("reg_email").value;
         email = document.getElementById("reg_email");
         if (emailRegex.test(emailvalue)) {
             email.style.color = "Black"
+            checkemail = true;
         }
         else {
             email.style.color = "red"
-=======
-    var checkuser=false,checkemail=false,checkphone=false,checkbalance=false,checkpw=false;
-
-    function regexuser(){
-        let userRegex = /^\S+$/;
-        uservalue=document.getElementById("reg_username").value;
-        user=document.getElementById("reg_username");
-        if (userRegex.test(uservalue)){
-            user.style.color="Black"
-            checkuser=true;
-
-        }
-        else{
-            user.style.color="red"
-            checkuser=false;
-        }
-    }
-
-    function regexemail(){
-        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        emailvalue=document.getElementById("reg_email").value;
-        email=document.getElementById("reg_email");
-        if (emailRegex.test(emailvalue)){
-            email.style.color="Black"
-            checkemail=true;
-        }
-        else{
-            email.style.color="red"
-            checkemail=false;
->>>>>>> eca18cabbc55dc3b033ecf7781b422a9286ebf6f
+            checkemail = false;
         }
     }
     function regexnumberphone() {
         let phoneRegex = /^0[0-9]{9,10}$/;
-<<<<<<< HEAD
         phonevalue = document.getElementById("reg_account_no").value;
         phone = document.getElementById("reg_account_no");
         if (phoneRegex.test(phonevalue)) {
             phone.style.color = "Black"
-=======
-        phonevalue=document.getElementById("reg_account_no").value;
-        phone=document.getElementById("reg_account_no");
-        if (phoneRegex.test(phonevalue)){
-            phone.style.color="Black"
-            checkphone=true;
->>>>>>> eca18cabbc55dc3b033ecf7781b422a9286ebf6f
+            checkphone = true;
         }
         else {
             console.log(phonevalue)
-<<<<<<< HEAD
             phone.style.color = "red"
-=======
-            phone.style.color="red"
-            checkphone=false;
->>>>>>> eca18cabbc55dc3b033ecf7781b422a9286ebf6f
+            checkphone = false;
         }
     }
     function regexbalance() {
         let balanceRegex = /^[0-9]+$/;
-<<<<<<< HEAD
         balancevalue = document.getElementById("reg_balance").value;
         balance = document.getElementById("reg_balance");
         if (balanceRegex.test(balancevalue)) {
             balance.style.color = "Black"
+            checkbalance = true;
         }
         else {
             balance.style.color = "red"
-=======
-        balancevalue=document.getElementById("reg_balance").value;
-        balance=document.getElementById("reg_balance");
-        if (balanceRegex.test(balancevalue)){
-            balance.style.color="Black"
-            checkbalance=true;
-        }
-        else{
-            balance.style.color="red"
-            checkbalance=false;
->>>>>>> eca18cabbc55dc3b033ecf7781b422a9286ebf6f
+            checkbalance = false;
         }
     }
 
@@ -182,32 +150,23 @@
         if (pw.value == cf_pw.value) {
             console.log(pw.value)
             console.log(cf_pw.value)
-<<<<<<< HEAD
             cf_pw.style.color = "Black"
+            checkpw = true;
         }
         else {
             console.log(pw.value + 'aaa')
             console.log(cf_pw.value + 'aaa')
             cf_pw.style.color = "red"
-=======
-            cf_pw.style.color="Black"
-            checkpw=true;
-        }
-        else{
-            console.log(pw.value+'aaa')
-            console.log(cf_pw.value+'aaa')
-            cf_pw.style.color="red"
-            checkpw=false;
+            checkpw = false;
         }
     }
 
-    function checkbutton(){
-        if(checkuser&&checkemail&&checkbalance&&checkpw&&checkphone){
-           document.getElementById("button").disabled=false;
+    function checkbutton() {
+        if (checkuser && checkemail && checkbalance && checkpw && checkphone) {
+            document.getElementById("button").disabled = false;
         }
-        else{
-            document.getElementById("button").disabled=true;
->>>>>>> eca18cabbc55dc3b033ecf7781b422a9286ebf6f
+        else {
+            document.getElementById("button").disabled = true;
         }
     }
 </script>

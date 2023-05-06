@@ -8,6 +8,7 @@ const he = require('he');
 exports.pending = async (req, res, next) => {
     if (req.method == "GET") {
         const transaction_BD = await moneyM.getAllTransactions();
+        console.log(transaction_BD)
         res.render("convertmoney/pending", {
             transaction: transaction_BD,
             account: req.session.user
@@ -85,6 +86,7 @@ exports.sendmoney = async (req, res, next) => {
 exports.history = async (req, res, next) => {
     const user = req.session.user
     const transaction_BD = await moneyM.getTransactionByUsername(user);
+    console.log(transaction_BD)
     res.render("convertmoney/history", {
         account: req.session.user,
         transaction: transaction_BD
