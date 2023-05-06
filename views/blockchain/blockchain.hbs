@@ -2,18 +2,30 @@
     <div id="panel-blockchain">
         {{#each this.data}}
         <div class="block">
-            <div class="prehash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px; ">
-                PREHASH: {{PREHASH}}</div>
-            <div class="content">
-                <p>Sender: {{Sender}}</p>
-                <p>Receiver: {{Receiver}}</p>
-                <p>Content: {{MESSAGE}}</p>
-                <p>Amount: {{AMOUNT}}</p>
-                <p>Time: {{TIMESTAMP}}</p>
-                <p>Block {{ID_BLOCK}}</p>
+            <div class="prehash" >
+                <p>PREHASH:</p> 
+                {{PREHASH}}
             </div>
-            <div class="curhash" style="white-space: pre-wrap; max-width: 370px;padding-left:5px;padding-right:5px;">
-                HASH: {{HASH}}</div>
+            <div class="content">
+                <p>Sender: </p>  {{Sender}}
+                </br>
+                <p>Receiver: </p>  {{Receiver}}
+                </br>
+                <p>Content: </p>  {{MESSAGE}}
+                </br>
+                </br>
+                <p>Amount: </p>  {{AMOUNT}}
+                </br>
+                <p id="timeblock">Time: </p> {{TIMESTAMP}}
+                </br>
+                </br>
+                </br>
+                <p id="idblock">Block {{ID_BLOCK}}</p>
+            </div>
+            <div class="curhash">
+                <p>CURHASH:</p> 
+                {{HASH}}
+            </div>
         </div>
         {{/each}}
     </div>
@@ -25,37 +37,46 @@
     .block {
         border: 1px #ccc;
         background-color: white;
-        text-align: center;
-        max-width: 380px;
-        display: inline-block;
+        text-align: justify;
         border: 1px solid;
         display: grid;
         grid-template-rows: 1fr 5fr 1fr;
+      
+        
     }
-
-    .content {
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
-
+    #idblock{
+        text-align:center;
+        padding-left:11vw;
+    }
+    #timeblock{
+        text-align:left;
+    }
+    .block p{
+        font-weight:700;
+        border:0;
+        padding:0;
+        display: inline-block;
     }
 
     .prehash {
-        overflow-wrap: break-word;
-
-
+        border-bottom:1px solid black;
+        padding-left: 5px;
+        padding-right:5px;
+        word-break: break-all;
+        
     }
 
     .curhash {
-        overflow-wrap: break-word;
-
-
+       border-top:1px solid black;
+       padding-left: 5px;
+       padding-right:5px;
+       word-break: break-all;
+       
     }
 
-
-    #container {
-        width: 100%;
-        height: 100vh;
-
+    .content{
+        padding-left: 5px;
+        padding-right:5px;
     }
 
     #container #panel-blockchain {
@@ -70,3 +91,27 @@
         margin-left: 2.5%;
     }
 </style>
+
+<script>
+    function changeColor() {
+        const blocks = document.querySelectorAll('.block');
+        console.log(blocks.length)
+        for (let i = 0; i < blocks.length+1; i++) {
+            const prehash = blocks[i+1].querySelector('.prehash');
+            const curhash = blocks[i].querySelector('.curhash');
+            let color = 'red';
+
+            if (prehash.style.backgroundColor === 'red') {
+                color = 'orange';
+            } 
+            else if (prehash.style.backgroundColor === 'orange') {
+                color = 'yellow';
+            }
+            curhash.style.backgroundColor = color;
+        }
+    }
+    window.addEventListener('load', () => {
+        changeColor();
+    });
+   
+</script>
