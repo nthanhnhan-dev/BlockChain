@@ -5,6 +5,7 @@ const app = express();
 var session = require("cookie-session");
 /* must */
 var bodyParser = require('body-parser')
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/public", express.static("public"));
@@ -28,17 +29,31 @@ app.use(
 app.set('view engine', 'hbs')
 
 app.get('/', function (req, res) {
+
     res.render('home',
         {
             account: req.session.user,
         })
 })
+app.use('/', require('./routes/login.r'));
+function requireLogin(req, res, next) {
+    if (req.session.user) {
+        // User is logged in, proceed to the next middleware or route handler
+        next();
+    } else {
+        // User is not logged in, redirect to login page
+        res.redirect("/login/signin");
+    }
+}
+
+// Apply the middleware to all routes that require authentication
+app.use(requireLogin);
 
 app.use('/', require('./routes/blocks.r'))
 
 app.use('/', require('./routes/convertmoney.r'));
 
-app.use('/', require('./routes/login.r'));
+
 
 app.listen(port, function () {
     console.log(`Server is running at http://localhost:${port}`);

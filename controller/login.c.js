@@ -10,8 +10,8 @@ exports.signin = async (req, res, next) => {
     else if (req.method == "POST") {
         const username = req.body.username;
         const password = req.body.password;
-        const userDatabase = await userM.getUserByName(username);
 
+        const userDatabase = await userM.getUserByName(username);
         if (userDatabase.length === 0) {
             res.render('login/signin', {
                 error: "Username invalid.Create one !",
@@ -20,7 +20,6 @@ exports.signin = async (req, res, next) => {
             const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
             if (compare) {
                 req.session.user = req.body.username;
-
 
                 res.redirect('/blockchain')
             } else {
