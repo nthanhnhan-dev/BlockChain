@@ -3,7 +3,7 @@ const hash = require('crypto-js/sha256');
 const he = require('he');
 const blockM = require('../model/block.m')
 const moneyM = require("../model/convertmoney.m");
-
+const userM = require("../model/login.m")
 
 class Block {
     constructor(preHash, data) {
@@ -103,6 +103,8 @@ exports.getAllBlockChain = async (req, res, next) => {
         for (var i = 0; i < all_block.length; i++) {
             arr_blockchain.push(all_block[i])
         }
+
+
         res.render("blockchain/blockchain", {
             data: arr_blockchain,
             account: req.session.user,
@@ -116,24 +118,33 @@ exports.getAllBlockChain = async (req, res, next) => {
 
 exports.createBlockChain = async (req, res, next) => {
     var transactions = await moneyM.getAllTransactions();
-    var transactions_to_blockchain = []
     var transactions_to_block;
     var preHash;
+    var hash_minevar;
     var check = 0;
+    var mineVar = 0;
     var block = []
     for (var i = 0; i < transactions.length; i++) {
         var exists = await blockM.checkExistTransationInBlock(transactions[i].ID_TRANSACTION);
         if (exists[0].exist === 0) {
-            prehash = await blockM.getPreHash()
+            preHash = await blockM.getPreHash()
+            hash_minevar = hash(preHash[0].HASH + JSON.stringify(transactions[i].MESSAGE) + new Date() + mineVar).toString();
+            while (!hash_minevar.startsWith('0000')) {
+                mineVar++;
+                hash_minevar = hash(preHash[0].HASH + JSON.stringify(transactions[i].MESSAGE) + new Date() + mineVar).toString();
+            }
+
             transactions_to_block = {
                 ID_TRANSACTION: transactions[i].ID_TRANSACTION,
-                PREHASH: prehash[0].HASH,
-                HASH: hash(prehash[0].HASH + JSON.stringify(transactions[i].MESSAGE) + new Date()).toString(),
+                PREHASH: preHash[0].HASH,
+                HASH: hash_minevar,
                 TIMESTAMP: new Date()
 
             }
             //transactions_to_blockchain.push(transactions_to_block);
             await blockM.addBlock(transactions_to_block)
+            const reward = await userM.getReward(req.session.user)
+            await userM.updateReward(req.session.user, reward[0].REWARDS + 100)
             check++;
         }
         else {

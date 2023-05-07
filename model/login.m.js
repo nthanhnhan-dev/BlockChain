@@ -29,5 +29,15 @@ module.exports = {
     updateBalance: async (balance, account_no) => {
         const result = db.load(`UPDATE ${table_name} set BALANCE=${balance} where ACCOUNT_NO='${account_no}'`)
         return result;
+    },
+    getReward: async (username) => {
+        const reward_DB = db.load(`SELECT REWARDS FROM ${table_name} where USERNAME='${username}'`)
+
+        return reward_DB
+    },
+    updateReward: async (username, reward) => {
+
+        const result = db.load(`UPDATE ${table_name} set REWARDS=${reward} where USERNAME='${username}'`)
+        return result;
     }
 }
