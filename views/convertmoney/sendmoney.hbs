@@ -82,11 +82,12 @@
                     <label for="message" class="form-label">Message</label>
                     <input type="text" name="message" class="form-control" id="message" aria-describedby="emailHelp">
                 </div>
+                <button type="submit" class="btn btn-primary" id="send">Send</button>
                 {{!-- <button type="submit" class="btn btn-primary"><a aria-current="page"
                         href="/pending"></a>Send</button> --}}
-                <button type="submit" class="btn btn-primary"
+                {{!-- <button type="submit" class="btn btn-primary"
                     onclick="return confirm('Bạn có chắc chắn muốn chuyển tiền không?')"><a aria-current="page"
-                        href="/pending"></a>Send</button>
+                        href="/pending"></a>Send</button> --}}
 
                 </br>
                 </br>
@@ -96,10 +97,72 @@
 
 <div id="confirm-form" style="display:none">
     <p>Bạn có chắc chắn muốn chuyển tiền không?</p>
-    <button type="button" id="confirm-yes">Có</button>
-    <button type="button" id="confirm-no">Không</button>
+    <div id="two-button">
+        <button type="button" id="confirm-yes">Có</button>
+        <button type="button" id="confirm-no">Không</button>
+    </div>
 </div>
 
+
+
+<script>
+    function showContainer2() {
+        var container2 = document.getElementById("container2");
+        var container1 = document.getElementById("container1")
+        container2.style.display = "block";
+        container1.style.display = "none";
+    }
+    {{!-- function showContainer1() {
+        var container1 = document.getElementById("container1");
+        var container2 = document.getElementById("container2");
+        container1.style.display = "block";
+        container2.style.display = "none";
+    } --}}
+    
+    // Lấy phần tử container2
+    var container2 = document.getElementById("container2");
+
+    // Lấy phần tử confirm-form
+    var confirmForm = document.getElementById("confirm-form");
+
+    // Lấy nút send
+    var sendButton = document.querySelector("#payment-form button[type='submit']");
+
+    // Lấy nút có và nút không
+    var confirmYesButton = document.getElementById("confirm-yes");
+    var confirmNoButton = document.getElementById("confirm-no");
+
+    // Thêm sự kiện click vào nút send
+    sendButton.addEventListener("click", function(e) {
+        e.preventDefault(); // Ngăn chặn form submit
+        
+        // Ẩn container2 và hiện confirm-form
+        //container2.style.display = "none";
+        confirmForm.classList.add('overlay')
+        confirmForm.style.display = "block";
+        document.getElementById('container2').style.pointerEvents='none'
+        confirmForm.style.pointerEvents = 'auto';
+    });
+
+    // Thêm sự kiện click vào nút có
+    confirmYesButton.addEventListener("click", function() {
+        // Thực hiện chuyển page
+        document.getElementById('payment-form').submit()
+        container2.style.pointerEvents='auto'
+
+    });
+
+    // Thêm sự kiện click vào nút không
+    confirmNoButton.addEventListener("click", function() {
+        // Hiện lại container2 và ẩn confirm-form
+        container2.style.display = "block";
+        confirmForm.style.display = "none";
+        container2.style.pointerEvents='auto'
+        confirmForm.style.pointerEvents = 'auto';
+        
+    });
+
+</script>
 
 
 <style>
@@ -120,6 +183,7 @@
         display: flex;
         justify-content: space-between;
     }
+    
 
     .button {
         width: 25%;
@@ -131,8 +195,8 @@
         font-size: 1.2em;
         width: 30vw;
         height: 60vh;
-        margin-top: 10vh;
-        margin-left: 35vw;
+        margin-top: 15vh;
+        margin-left: 20vw;
 
         position: absolute;
         display: none;
@@ -140,31 +204,58 @@
     }
 
     #confirm-form {
-        width: 30vw;
-        height: 60vh;
-        margin-left: 35vw;
-        margin-top: 10vh;
-        display: none;
+        width: 28vw;
+        height: 20vh;
+        padding:10px;
+        background-color:lightgray
+    }
+    #two-button{
+        display:flex;
+        justify-content: space-between;
+    }
+    #two-button button{
+        width:5vw;
+        background-color: white;
+        color:black;
+        justify-content: space-between;
+    } 
+    #two-button button:hover{
+        
+        background-color:black;
+        color:white;
+        opacity: 0.8;
+    }
+
+    .overlay {
+        position: fixed; /* đặt vị trí tuyệt đối */
+        top:40vh;
+        left:55vw;
+        width: 100%; /* đặt kích thước bằng với kích thước màn hình */
+        height: 100%;
+        background-color: white /* đặt độ mờ của overlay */
+        z-index: 9999; /* đặt lớp cao nhất */
+        animation:modalFadeIn ease 0.6s;
     }
 
     footer {
         display: none;
     }
+
+    .open{
+        display:flex
+    }
+
+    @keyframes modalFadeIn{
+        from{
+            opacity:0;
+            transform:translateX(-300px);
+        }
+        to{
+            opacity:1;
+            transform:translateX(0);
+        }
+    }
+  
+ 
 </style>
 
-
-<script>
-    function showContainer2() {
-        var container2 = document.getElementById("container2");
-        var container1 = document.getElementById("container1")
-        container2.style.display = "block";
-        container1.style.display = "none";
-    }
-    function showContainer1() {
-        var container1 = document.getElementById("container1");
-        var container2 = document.getElementById("container2");
-        container1.style.display = "block";
-        container2.style.display = "none";
-    }
-
-</script>
