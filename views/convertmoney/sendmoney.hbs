@@ -1,167 +1,4 @@
-{{!-- <section id="container1" class="vh-100" style="background-color: #f4f5f7;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-6 mb-4 mb-lg-0">
-                <div class="card mb-3" style="border-radius: .5rem;">
-                    <div class="row g-0">
-                        <div class="col-md-4 gradient-custom text-center text-white"
-                            style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                                alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                            <h5>{{user.OWNER}}</h5>
-                            <p>{{user.BALANCE}}$</p>
-
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body p-4">
-                                <h6>Information</h6>
-                                <hr class="mt-0 mb-4">
-                                <div class="row pt-1">
-                                    <div class="col-6 mb-3">
-                                        <h6>Email</h6>
-                                        <p class="text-muted">{{user.EMAIL}}</p>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <h6>Account Number</h6>
-                                        <p class="text-muted">{{user.ACCOUNT_NO}}</p>
-                                    </div>
-                                    <div class="two-buttons">
-                                        <button type="submit" class="btn btn-primary" onclick="showContainer2()">Send
-                                            money</button>
-                                        <a class="btn btn-primary" aria-current="page" href="/history">History</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<div id="container2">
-    <form action="/pending" method="POST">
-        <div>
-            <div class="mb-3">
-                <label for="sender" class="form-label">Sender</label>
-                <input type="text" name="sender" value="{{user.OWNER}}" placeholder={{user.OWNER}} class="form-control"
-                    id="sender" aria-describedby="emailHelp" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="receiver" class="form-label">Receiver</label>
-                <select class="form-select" name="receiver" aria-label="Default select example">
-                    {{#each this.alluser}}
-                    <option name={{USERNAME}} value={{USERNAME}}>{{OWNER}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            {{#if error}}
-            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-                    <use xlink:href="#exclamation-triangle-fill" />
-                </svg>
-                <div>
-                    {{error}}
-                </div>
-            </div>
-            {{/if}}
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Your Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div>
-                <div class="mb-3">
-                    <label for="money" class="form-label">Money</label>
-                    <input type="number" name="money" class="form-control" id="money" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <input type="text" name="message" class="form-control" id="message" aria-describedby="emailHelp">
-                </div>
-                <button type="submit" class="btn btn-primary"><a aria-current="page" href="/pending"></a>Send</button>
-                </br>
-                </br>
-            </div>
-    </form>
-</div>
-
-<div id="confirm-form">
-    <p>Bạn có chắc chắn muốn chuyển tiền không?</p>
-    <button type="button" id="confirm-yes">Có</button>
-    <button type="button" id="confirm-no">Không</button>
-</div>
-
-
-
-<style>
-    .gradient-custom {
-        /* fallback for old browsers */
-        background: #f6d365;
-
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
-
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
-    }
-
-
-
-    .two-buttons {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .button {
-        width: 25%;
-        height: 35%;
-        border: 1px solid black;
-    }
-
-    #container2 {
-        font-size: 1.2em;
-        width: 30vw;
-        height: 60vh;
-        margin-left: 35vw;
-        margin-top: 10vh;
-        display: none;
-        position: absolute;
-    }
-
-    #confirm-form {
-        width: 30vw;
-        height: 60vh;
-        margin-left: 35vw;
-        margin-top: 10vh;
-        display: none;
-    }
-</style>
-
-
-<script>
-    function showContainer2() {
-        var container2 = document.getElementById("container2");
-        var container1 = document.getElementById("container1")
-        container2.style.display = "block";
-        container1.style.display = "none";
-    }
-    function showContainer1() {
-        var container1 = document.getElementById("container1");
-        var container2 = document.getElementById("container2");
-        container1.style.display = "block";
-        container2.style.display = "none";
-    }
-
-</script> --}}
-
-
-
-
-<section id="container1" class="vh-100" style="background-color: #f4f5f7;">
+<div id="container1" class="vh-100" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-6 mb-4 mb-lg-0">
@@ -202,7 +39,7 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
 
 
@@ -245,8 +82,11 @@
                     <label for="message" class="form-label">Message</label>
                     <input type="text" name="message" class="form-control" id="message" aria-describedby="emailHelp">
                 </div>
-                {{!-- <button type="submit" class="btn btn-primary"><a aria-current="page" href="/pending"></a>Send</button> --}}
-                <button type="submit" class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn muốn chuyển tiền không?')"><a aria-current="page" href="/pending"></a>Send</button>
+                {{!-- <button type="submit" class="btn btn-primary"><a aria-current="page"
+                        href="/pending"></a>Send</button> --}}
+                <button type="submit" class="btn btn-primary"
+                    onclick="return confirm('Bạn có chắc chắn muốn chuyển tiền không?')"><a aria-current="page"
+                        href="/pending"></a>Send</button>
 
                 </br>
                 </br>
@@ -291,10 +131,12 @@
         font-size: 1.2em;
         width: 30vw;
         height: 60vh;
-        margin-left: 35vw;
         margin-top: 10vh;
-        display: none;
+        margin-left: 35vw;
+
         position: absolute;
+        display: none;
+
     }
 
     #confirm-form {
@@ -302,6 +144,10 @@
         height: 60vh;
         margin-left: 35vw;
         margin-top: 10vh;
+        display: none;
+    }
+
+    footer {
         display: none;
     }
 </style>
@@ -320,5 +166,5 @@
         container1.style.display = "block";
         container2.style.display = "none";
     }
-   
+
 </script>

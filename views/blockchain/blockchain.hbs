@@ -2,19 +2,19 @@
     <div id="panel-blockchain">
         {{#each this.data}}
         <div class="block">
-            <div class="prehash" >
-                <p>PREHASH:</p> 
+            <div class="prehash">
+                <p>PREHASH:</p>
                 {{PREHASH}}
             </div>
             <div class="content">
-                <p>Sender: </p>  {{Sender}}
+                <p>Sender: </p> {{Sender}}
                 </br>
-                <p>Receiver: </p>  {{Receiver}}
+                <p>Receiver: </p> {{Receiver}}
                 </br>
-                <p>Content: </p>  {{MESSAGE}}
+                <p>Content: </p> {{MESSAGE}}
                 </br>
                 </br>
-                <p>Amount: </p>  {{AMOUNT}}
+                <p>Amount: </p> {{AMOUNT}}
                 </br>
                 <p id="timeblock">Time: </p> {{TIMESTAMP}}
                 </br>
@@ -23,7 +23,7 @@
                 <p id="idblock">Block {{ID_BLOCK}}</p>
             </div>
             <div class="curhash">
-                <p>CURHASH:</p> 
+                <p>CURHASH:</p>
                 {{HASH}}
             </div>
         </div>
@@ -36,42 +36,45 @@
 
 <script>
     function changeColor() {
-        const listcolor=['red','blue','purple','green','brown']
-        const n=listcolor.length;
+        const listcolor = ['red', 'blue', 'purple', 'green', 'brown']
+        const n = listcolor.length;
         const hashBlocks = document.querySelectorAll('.curhash');
 
-        
-        hashBlocks.forEach((block, index) => {
-        // Lấy khối hash của khối tiếp theo
-        block.style.color=listcolor[index%n]
-        const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
-        nextBlock.style.color=listcolor[index%n]
 
-        {{!-- // Thay đổi màu sắc của khối hash hiện tại
+        hashBlocks.forEach((block, index) => {
+            // Lấy khối hash của khối tiếp theo
+            block.style.color = listcolor[index % n]
+            const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
+            nextBlock.style.color = listcolor[index % n]
+
+            {
+                {
+                    !-- // Thay đổi màu sắc của khối hash hiện tại
         if (index % 3 === 0) {
-            block.style.color = 'red';
-        } else if (index % 3 === 1) {
-            block.style.color = 'yellow';
-        } else {
-            block.style.color = 'green';
-        }
-        
-        // Thay đổi màu sắc của khối prehash tiếp theo
-        if (nextBlock) {
-            if (index % 3 === 0) {
-            nextBlock.style.color = 'red';
-            } else if (index % 3 === 1) {
-            nextBlock.style.color = 'yellow';
-            } else {
-            nextBlock.style.color = 'green';
+                        block.style.color = 'red';
+                    } else if (index % 3 === 1) {
+                        block.style.color = 'yellow';
+                    } else {
+                        block.style.color = 'green';
+                    }
+
+                    // Thay đổi màu sắc của khối prehash tiếp theo
+                    if (nextBlock) {
+                        if (index % 3 === 0) {
+                            nextBlock.style.color = 'red';
+                        } else if (index % 3 === 1) {
+                            nextBlock.style.color = 'yellow';
+                        } else {
+                            nextBlock.style.color = 'green';
+                        }
+                    } --}
             }
-        } --}}
         });
     }
     window.addEventListener('load', () => {
         changeColor();
     });
-   
+
 </script>
 
 <style>
@@ -82,43 +85,46 @@
         border: 1px solid;
         display: grid;
         grid-template-rows: 1fr 5fr 1fr;
-      
-        
+
+
     }
-    #idblock{
-        text-align:center;
-        padding-left:11vw;
+
+    #idblock {
+        text-align: center;
+        padding-left: 11vw;
     }
-    #timeblock{
-        text-align:left;
+
+    #timeblock {
+        text-align: left;
     }
-    .block p{
-        font-weight:700;
-        border:0;
-        padding:0;
+
+    .block p {
+        font-weight: 700;
+        border: 0;
+        padding: 0;
         display: inline-block;
-        color:black;
+        color: black;
     }
 
     .prehash {
-        border-bottom:1px solid black;
+        border-bottom: 1px solid black;
         padding-left: 5px;
-        padding-right:5px;
+        padding-right: 5px;
         word-break: break-all;
-        
+
     }
 
     .curhash {
-       border-top:1px solid black;
-       padding-left: 5px;
-       padding-right:5px;
-       word-break: break-all;
-       
+        border-top: 1px solid black;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-break: break-all;
+
     }
 
-    .content{
+    .content {
         padding-left: 5px;
-        padding-right:5px;
+        padding-right: 5px;
     }
 
     #container #panel-blockchain {
@@ -133,8 +139,8 @@
         margin-left: 2.5%;
     }
 
-    #footer{
-        height:10vh;
-        widht:100vw;
+    #footer {
+        height: 10vh;
+        widht: 100vw;
     }
 </style>

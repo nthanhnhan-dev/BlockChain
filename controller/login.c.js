@@ -39,7 +39,6 @@ exports.signup = async (req, res, next) => {
         res.render('./login/signup');
     }
     else if (req.method == "POST") {
-        console.log(req.body)
         const existAccount = await userM.checkExist(
             req.body.f_Username,
             req.body.f_Email,
