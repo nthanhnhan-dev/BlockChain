@@ -47,28 +47,6 @@
             const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
             nextBlock.style.color = listcolor[index % n]
 
-            {
-                {
-                    !-- // Thay đổi màu sắc của khối hash hiện tại
-        if (index % 3 === 0) {
-                        block.style.color = 'red';
-                    } else if (index % 3 === 1) {
-                        block.style.color = 'yellow';
-                    } else {
-                        block.style.color = 'green';
-                    }
-
-                    // Thay đổi màu sắc của khối prehash tiếp theo
-                    if (nextBlock) {
-                        if (index % 3 === 0) {
-                            nextBlock.style.color = 'red';
-                        } else if (index % 3 === 1) {
-                            nextBlock.style.color = 'yellow';
-                        } else {
-                            nextBlock.style.color = 'green';
-                        }
-                    } --}
-            }
         });
     }
     window.addEventListener('load', () => {
@@ -85,7 +63,7 @@
         border: 1px solid;
         display: grid;
         grid-template-rows: 1fr 5fr 1fr;
-
+        margin:20px;
 
     }
 
