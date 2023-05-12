@@ -7,20 +7,22 @@
                 {{PREHASH}}
             </div>
             <div class="content">
-                <p>Sender: </p> {{Sender}}
-                </br>
-                <p>Receiver: </p> {{Receiver}}
-                </br>
-                <p>Content: </p> {{MESSAGE}}
-                </br>
-                </br>
-                <p>Amount: </p> {{AMOUNT}}
-                </br>
-                <p id="timeblock">Time: </p> {{TIMESTAMP}}
-                </br>
-                </br>
-                </br>
-                <p id="idblock">Block {{ID_BLOCK}}</p>
+                <div class="contentm">
+                    <p>Sender: </p> {{Sender}}
+                    </br>
+                    <p>Receiver: </p> {{Receiver}}
+                    </br>
+                    <p>Content: </p> {{MESSAGE}}
+                    </br>
+                    </br>
+                    <p>Amount: </p> {{AMOUNT}}
+                    </br>
+                    <p id="timeblock">Time: </p> {{TIMESTAMP}}
+                    </br>
+                    </br>
+                    {{!-- <img src="../../public/block.jpg" alt="coin" class="coin-img"> --}}
+                    <p id="idblock">Block {{ID_BLOCK}}</p>
+                </div>
             </div>
             <div class="curhash">
                 <p>CURHASH:</p>
@@ -36,8 +38,11 @@
 
 <script>
     function changeColor() {
+
+        
+
         const listcolor = [
-            'red', 'blue', 'purple', 'green', 'brown', 'yellow', 'orange', 'pink',
+            'red', 'blue', 'purple', 'green', 'brown', 'orange', 'pink',
             "BlueViolet",
             "BurlyWood",
             "CadetBlue",
@@ -47,7 +52,6 @@
             "Crimson",
             "Cyan",
             "DarkBlue",
-            "DarkCyan",
             "DarkGoldenRod",
             "DarkGreen",
             "DarkKhaki",
@@ -64,41 +68,63 @@
             "DarkTurquoise",
             "DarkViolet",
             "DeepPink",
-            "DeepSkyBlue",
             "DimGray",
             "DimGrey",
             "DodgerBlue",
             "FireBrick",]
         const n = listcolor.length;
         const hashBlocks = document.querySelectorAll('.curhash');
+        
+        let i=2
+
+        const connections = document.querySelectorAll('.connection');
+        connections.forEach(connection => connection.parentNode.removeChild(connection));
 
 
         hashBlocks.forEach((block, index) => {
+            
             // Lấy khối hash của khối tiếp theo
             block.style.color = listcolor[index % n]
-            const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
-            nextBlock.style.color = listcolor[index % n]
-
+            
+            if(i<hashBlocks.length){
+                const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
+                console.log(nextBlock)
+            
+                nextBlock.style.color = listcolor[index % n]
+                i++
+                console.log(i)
+                
+            }
         });
     }
+
     window.addEventListener('load', () => {
         changeColor();
+       
     });
 
 </script>
 
 <style>
+    #container{
+        
+    }
+
     .block {
+        position:relative;
         border: 1px #ccc;
+       
         background-color: white;
         text-align: justify;
         border: 1px solid;
         display: grid;
         grid-template-rows: 1fr 5fr 1fr;
         margin: 20px;
-
+        border-radius: 3%;   
+       
     }
-
+    
+   
     #idblock {
         text-align: center;
         padding-left: 11vw;
@@ -114,6 +140,7 @@
         padding: 0;
         display: inline-block;
         color: black;
+        
     }
 
     .prehash {
@@ -133,8 +160,46 @@
     }
 
     .content {
+        position:relative;
         padding-left: 5px;
         padding-right: 5px;
+    }
+
+    .content:hover {
+        background-image: url("../../public/coin.jpg");
+        transform: rotateY(360deg); 
+        animation: spin 1.5s forwards;
+        height:100%;
+        background-position: center;
+        background-size:cover;
+    }
+    .content:hover .contentm {
+        visibility: hidden;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotateY(-180deg);
+        }
+        to {
+            transform: rotateY(0deg);
+        }
+    }
+   
+
+    .coin-img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        height: auto;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .content:hover .coin-img {
+        opacity: 1;
     }
 
     #container #panel-blockchain {
@@ -148,10 +213,19 @@
         border: 1px solid;
         margin-top: 5%;
         margin-left: 2.5%;
+        
+    }
+
+    .line {
+        height: 1px;
+        background-color: black;
+        grid-column-start: 1;
+        grid-column-end: -1;
+        margin-top: calc(var(--gap) / 2);
     }
 
     #footer {
         height: 10vh;
-        widht: 100vw;
+        width: 100vw;
     }
 </style>
