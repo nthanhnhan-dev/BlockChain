@@ -1,4 +1,5 @@
-<div id="container">
+<div id="particles-js"></div>
+<div class="container">
     <div id="panel-blockchain">
         {{#each this.data}}
         <div class="block">
@@ -30,17 +31,15 @@
             </div>
         </div>
         {{/each}}
+
     </div>
+
     <div hidden="true">{{data}},{{n}}</div>
-    <div id="footer"></div>
 </div>
 
 
 <script>
     function changeColor() {
-
-        
-
         const listcolor = [
             'red', 'blue', 'purple', 'green', 'brown', 'orange', 'pink',
             "BlueViolet",
@@ -74,57 +73,65 @@
             "FireBrick",]
         const n = listcolor.length;
         const hashBlocks = document.querySelectorAll('.curhash');
-        
-        let i=2
+
+        let i = 2
 
         const connections = document.querySelectorAll('.connection');
         connections.forEach(connection => connection.parentNode.removeChild(connection));
 
 
         hashBlocks.forEach((block, index) => {
-            
+
             // Lấy khối hash của khối tiếp theo
             block.style.color = listcolor[index % n]
-            
-            if(i<hashBlocks.length){
+
+            if (i < hashBlocks.length) {
                 const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
                 console.log(nextBlock)
-            
+
                 nextBlock.style.color = listcolor[index % n]
                 i++
                 console.log(i)
-                
+
             }
         });
     }
 
     window.addEventListener('load', () => {
         changeColor();
-       
+
     });
 
 </script>
+<script src="../../public/particles.js"></script>
+<script src="../../public/app.js"></script>
+
 
 <style>
-    #container{
-        
+    #particles-js {
+        background-color: rgb(26, 86, 110);
+        height: 150vh;
+        position: absolute;
+        z-index: -1;
+        top: 100;
+
     }
 
     .block {
-        position:relative;
+        position: relative;
         border: 1px #ccc;
-       
+
         background-color: white;
         text-align: justify;
         border: 1px solid;
         display: grid;
         grid-template-rows: 1fr 5fr 1fr;
         margin: 20px;
-        border-radius: 3%;   
-       
+        border-radius: 3%;
+
     }
-    
-   
+
+
     #idblock {
         text-align: center;
         padding-left: 11vw;
@@ -140,7 +147,7 @@
         padding: 0;
         display: inline-block;
         color: black;
-        
+
     }
 
     .prehash {
@@ -160,19 +167,20 @@
     }
 
     .content {
-        position:relative;
+        position: relative;
         padding-left: 5px;
         padding-right: 5px;
     }
 
     .content:hover {
         background-image: url("../../public/coin.jpg");
-        transform: rotateY(360deg); 
+        transform: rotateY(360deg);
         animation: spin 1.5s forwards;
-        height:100%;
+        height: 100%;
         background-position: center;
-        background-size:cover;
+        background-size: cover;
     }
+
     .content:hover .contentm {
         visibility: hidden;
     }
@@ -181,11 +189,12 @@
         from {
             transform: rotateY(-180deg);
         }
+
         to {
             transform: rotateY(0deg);
         }
     }
-   
+
 
     .coin-img {
         position: absolute;
@@ -202,7 +211,7 @@
         opacity: 1;
     }
 
-    #container #panel-blockchain {
+    .container #panel-blockchain {
         overflow-y: auto;
         display: grid;
         height: 90%;
@@ -213,8 +222,11 @@
         border: 1px solid;
         margin-top: 5%;
         margin-left: 2.5%;
-        
+        margin-bottom: 5%;
+
     }
+
+    .container {}
 
     .line {
         height: 1px;
@@ -222,10 +234,5 @@
         grid-column-start: 1;
         grid-column-end: -1;
         margin-top: calc(var(--gap) / 2);
-    }
-
-    #footer {
-        height: 10vh;
-        width: 100vw;
     }
 </style>
