@@ -11,6 +11,8 @@ router.get('/pending', BlockC.pending)
 router.post('/pending', BlockC.pending)
 router.get('/history', BlockC.history);
 router.get('/sendcoin', BlockC.sendcoin);
+router.post('/sendcoin', BlockC.sendcoin);
+
 
 
 

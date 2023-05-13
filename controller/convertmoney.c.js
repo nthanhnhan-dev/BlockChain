@@ -25,17 +25,18 @@ exports.pending = async (req, res, next) => {
         const sender_username = req.body.sender;
         const receiver_username = req.body.receiver
 
-        const balance = (await userM.getUserBalance(sender_username))[0].BALANCE
+        const balance_sender = (await userM.getUserBalance(sender_username))[0].BALANCE
+        const balance_receiver = (await userM.getUserBalance(receiver_username))[0].BALANCE
         const user = await userM.getUserByName(req.session.user);
         const alluser = await userM.getAllUserExceptOwner(req.session.user);
         if (compare) {
             const transaction = {
                 FROM: (await moneyM.getAccountNoByUsername(sender_username))[0].ACCOUNT_NO,
                 TO: (await moneyM.getAccountNoByUsername(receiver_username))[0].ACCOUNT_NO,
-                AMOUNT: req.body.money,
+                AMOUNT: Number(req.body.money),
                 MESSAGE: req.body.message
             }
-            if (balance < req.body.money) {
+            if (balance_sender < req.body.money) {
                 res.render("convertmoney/wrongpassword", {
                     errorBalance: "Not enough money",
                     account: req.session.user,
@@ -45,7 +46,8 @@ exports.pending = async (req, res, next) => {
             }
             else {
                 await moneyM.addTransaction(transaction);
-                await userM.updateBalance(balance - transaction.AMOUNT, transaction.FROM)
+                await userM.updateBalance(balance_sender - transaction.AMOUNT, transaction.FROM)
+                await userM.updateBalance(balance_receiver + transaction.AMOUNT, transaction.TO)
 
                 res.redirect('/sendmoney')
             }
@@ -91,11 +93,57 @@ exports.history = async (req, res, next) => {
     })
 }
 exports.sendcoin = async (req, res, next) => {
-    const user = await userM.getUserByName(req.session.user);
-    const alluser = await userM.getAllUserExceptOwner(req.session.user);
-    res.render("convertmoney/sendcoin", {
-        account: req.session.user,
-        user: user[0],
-        alluser: alluser,
-    })
+    if (req.method === "GET") {
+        const user = await userM.getUserByName(req.session.user);
+        const alluser = await userM.getAllUserExceptOwner(req.session.user);
+        res.render("convertmoney/sendcoin", {
+            account: req.session.user,
+            user: user[0],
+            alluser: alluser,
+        })
+    }
+    else if (req.method === "POST") {
+        //console.log(req.body)
+        const sender = req.body.sender
+        const password = req.body.password;
+        const userDatabase = await userM.getUserByName(sender);
+        const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
+        const sender_username = req.body.sender;
+        const receiver_username = req.body.receiver
+        const reward = (await userM.getReward(sender_username))[0].REWARDS
+        const user = await userM.getUserByName(req.session.user);
+        const alluser = await userM.getAllUserExceptOwner(req.session.user);
+        if (compare) {
+            const transaction_coin = {
+                FROM: (await moneyM.getAccountNoByUsername(sender_username))[0].ACCOUNT_NO,
+                TO: (await moneyM.getAccountNoByUsername(receiver_username))[0].ACCOUNT_NO,
+                AMOUNT: req.body.coin,
+                FEE: req.body.fee
+            }
+            if (reward < req.body.coin) {
+                res.render("convertmoney/wrongpassword", {
+                    errorBalance: "Not enough coin",
+                    account: req.session.user,
+                    user: user[0],
+                    alluser: alluser,
+                })
+            }
+            else {
+
+                await userM.updateReward(reward - transaction_coin.AMOUNT, transaction_coin.FROM)
+
+                res.redirect('/sendmoney')
+            }
+
+        }
+        else {
+
+            res.render("convertmoney/wrongpassword", {
+                errorPassword: "Wrong password",
+                account: req.session.user,
+                user: user[0],
+                alluser: alluser,
+            })
+        }
+    }
 }

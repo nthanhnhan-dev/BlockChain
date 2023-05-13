@@ -1,4 +1,3 @@
-<div id="particles-js"></div>
 <div id="container1" class="vh-100 bg-transparent" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -45,7 +44,7 @@
 
 
 <div id="container2">
-    <form id="payment-form" action="/pending" method="POST">
+    <form id="payment-form" action="/sendcoin" method="POST">
         <div>
             <div class="mb-3">
                 <label for="sender" class="form-label">Sender</label>
@@ -76,13 +75,15 @@
             </div>
             <div>
                 <div class="mb-3">
-                    <label for="money" class="form-label">Money</label>
-                    <input type="number" name="money" class="form-control" id="money" aria-describedby="emailHelp">
+                    <label for="coin" class="form-label">Coin</label>
+                    <input type="number" name="coin" class="form-control" id="coin" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <input type="text" name="message" class="form-control" id="message" aria-describedby="emailHelp">
+                    <label for="fee" class="form-label">Fee</label>
+                    <input type="number" name="fee" value="50" class="form-control" id="fee"
+                        aria-describedby="emailHelp" readonly>
                 </div>
+
                 <button type="submit" class="btn btn-primary" id="send">Send</button>
                 {{!-- <button type="submit" class="btn btn-primary"><a aria-current="page"
                         href="/pending"></a>Send</button> --}}
@@ -171,18 +172,6 @@
 
 
 <style>
-    #particles-js {
-        background-color: skyblue;
-
-
-        height: 100vh;
-        width: 98.7vw;
-        position: absolute;
-        z-index: -1;
-        top: 100;
-
-    }
-
     .gradient-custom {
         /* fallback for old browsers */
         background: #f6d365;

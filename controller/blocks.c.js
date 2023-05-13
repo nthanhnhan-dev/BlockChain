@@ -144,7 +144,7 @@ exports.createBlockChain = async (req, res, next) => {
             //transactions_to_blockchain.push(transactions_to_block);
             await blockM.addBlock(transactions_to_block)
             const reward = await userM.getReward(req.session.user)
-            await userM.updateReward(req.session.user, reward[0].REWARDS + 100)
+            await userM.updateReward(req.session.user, reward[0].REWARDS + 0.1)
             check++;
         }
         else {
