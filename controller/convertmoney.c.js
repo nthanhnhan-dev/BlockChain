@@ -131,7 +131,6 @@ exports.sendcoin = async (req, res, next) => {
                 })
             }
             else {
-                console.log(sender_username)
                 await userM.updateReward(sender_username, coin_sender - transaction_coin.AMOUNT)
                 await userM.updateReward(receiver_username, coin_receiver + transaction_coin.AMOUNT);
                 await userM.updateBalance(balance_sender - transaction_coin.FEE, sender_username)

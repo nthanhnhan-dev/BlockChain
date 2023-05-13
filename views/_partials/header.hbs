@@ -24,8 +24,11 @@
 
             {{#if account}}
             <div class="d-flex">
-                <a type="button" class="btn btn-primary me-2 row" id="account" href="login/profile">Hi
-                    {{account}}</a>
+
+                <form action="/login/profile" method="GET">
+                    <button type="submit" class="btn btn-primary me-2 row">Hi
+                        {{account}}</button>
+                </form>
                 <form action="/logout" method="POST">
                     <button type="submit" class="btn btn-danger">Log Out</button>
                 </form>

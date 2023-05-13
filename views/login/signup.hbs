@@ -1,4 +1,6 @@
 <section>
+    <div id="particles-js" class="position-absolute"></div>
+
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -85,6 +87,23 @@
         </div>
     </div>
 </section>
+<style>
+    #wrapper {
+
+        display: block;
+    }
+
+    #particles-js {
+        background-color: skyblue;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+</style>
+<script src="../../public/particles.js"></script>
+<script src="../../public/app.js"></script>
 <script>
     var checkuser = false, checkemail = false, checkphone = false, checkbalance = false, checkpw = false;
 
@@ -132,11 +151,11 @@
     }
     function regexbalance() {
         let balanceRegex = /^[0-9]+$/;
-        balancevalue=document.getElementById("reg_balance").value;
-        balance=document.getElementById("reg_balance");
-        if (balanceRegex.test(balancevalue)&& parseInt(balancevalue) > 100000){
-            balance.style.color="Black"
-            checkbalance=true;
+        balancevalue = document.getElementById("reg_balance").value;
+        balance = document.getElementById("reg_balance");
+        if (balanceRegex.test(balancevalue) && parseInt(balancevalue) > 100000) {
+            balance.style.color = "Black"
+            checkbalance = true;
         }
         else {
             balance.style.color = "red"
