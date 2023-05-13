@@ -1,35 +1,61 @@
-<form action="/blockchain" method="POST">
-    {{#if announce}}
-    <div class="alert alert-warning d-flex align-items-center" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-            <use xlink:href="#exclamation-triangle-fill" />
-        </svg>
-        <div>
-            {{announce}}
-        </div>
+<div class="position-relative">
+    <div id="particles-js" class="position-absolute"></div>
+    <div>
+        <form action="/blockchain" method="POST">
+            {{#if announce}}
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                    <use xlink:href="#exclamation-triangle-fill" />
+                </svg>
+                <div>
+                    {{announce}}
+                </div>
+            </div>
+            {{/if}}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Sender</th>
+                        <th scope="col">Receiver</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                {{#each this.transaction}}
+                <tbody>
+                    <th scope="row">{{ID_TRANSACTION}}</th>
+
+                    <td>{{Sender}}({{FROM}})</td>
+                    <td>{{Receiver}}({{TO}})</td>
+                    <td>{{AMOUNT}}</td>
+
+
+                </tbody>
+                {{/each}}
+
+            </table>
+            <input type="submit" class="btn btn-info mr-2 font-weight-bold" value="MINING">
+        </form>
     </div>
-    {{/if}}
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Sender</th>
-                <th scope="col">Receiver</th>
-                <th scope="col">Amount</th>
-            </tr>
-        </thead>
-        {{#each this.transaction}}
-        <tbody>
-            <th scope="row">{{ID_TRANSACTION}}</th>
+</div>
+<script src="../../public/particles.js"></script>
+<script src="../../public/app.js"></script>
 
-            <td>{{Sender}}({{FROM}})</td>
-            <td>{{Receiver}}({{TO}})</td>
-            <td>{{AMOUNT}}</td>
+<style>
+    #wrapper {
 
+        display: block;
+    }
 
-        </tbody>
-        {{/each}}
+    #particles-js {
+        background-color: skyblue;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+</style>
+<script>
 
-    </table>
-    <input type="submit" class="btn btn-info mr-2 font-weight-bold" value="MINING">
-</form>
+</script>

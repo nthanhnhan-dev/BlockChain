@@ -90,3 +90,12 @@ exports.history = async (req, res, next) => {
         transaction: transaction_BD
     })
 }
+exports.sendcoin = async (req, res, next) => {
+    const user = await userM.getUserByName(req.session.user);
+    const alluser = await userM.getAllUserExceptOwner(req.session.user);
+    res.render("convertmoney/sendcoin", {
+        account: req.session.user,
+        user: user[0],
+        alluser: alluser,
+    })
+}

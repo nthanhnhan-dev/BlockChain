@@ -11,7 +11,7 @@
                     <a class="nav-link active" aria-current="page" href="/sendmoney">SEND MONEY</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/pending">SEND COIN</a>
+                    <a class="nav-link active" aria-current="page" href="/sendcoin">SEND COIN</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/blockchain">MY BLOCKCHAIN</a>
@@ -24,10 +24,10 @@
 
             {{#if account}}
             <div class="d-flex">
-                <a type="button" class="btn btn-outline-primary me-2 row" id="account" href="login/profile">Hi
+                <a type="button" class="btn btn-primary me-2 row" id="account" href="login/profile">Hi
                     {{account}}</a>
                 <form action="/logout" method="POST">
-                    <button type="submit" class="btn btn-outline-danger">Log Out</button>
+                    <button type="submit" class="btn btn-danger">Log Out</button>
                 </form>
             </div>
             {{else}}
@@ -41,5 +41,13 @@
     .img-icon {
         height: 50px;
         width: 50px;
+    }
+
+    .navbar {
+        background-color: black !important;
+    }
+
+    .nav-item a {
+        color: white !important;
     }
 </style>

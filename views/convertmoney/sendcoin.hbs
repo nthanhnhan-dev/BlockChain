@@ -10,7 +10,7 @@
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                                 alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                             <h5>{{user.USERNAME}}</h5>
-                            <p>{{user.BALANCE}}$</p>
+                            <p>{{user.REWARDS}} coin </p>
 
                         </div>
                         <div class="col-md-8">
@@ -28,7 +28,7 @@
                                     </div>
                                     <div class="two-buttons">
                                         <button type="submit" class="btn btn-primary" onclick="showContainer2()">Send
-                                            money</button>
+                                            coin</button>
                                         <a class="btn btn-primary" aria-current="page" href="/history">History</a>
                                     </div>
                                 </div>
@@ -114,6 +114,8 @@
         container2.style.display = "block";
         container1.style.display = "none";
     }
+
+
     function showContainer1() {
         var container1 = document.getElementById("container1");
         var container2 = document.getElementById("container2");
@@ -170,7 +172,6 @@
 
 <style>
     #particles-js {
-
         background-color: skyblue;
 
 
