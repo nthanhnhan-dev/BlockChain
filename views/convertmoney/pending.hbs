@@ -1,3 +1,6 @@
+<div class="position-relative">
+<div id="particles-js" class="position-absolute"></div>
+<div>
 <form action="/blockchain" method="POST">
     {{#if announce}}
     <div class="alert alert-warning d-flex align-items-center" role="alert">
@@ -33,3 +36,26 @@
     </table>
     <input type="submit" class="btn btn-info mr-2 font-weight-bold" value="MINING">
 </form>
+</div>
+</div>
+<script src="../../public/particles.js"></script>
+<script src="../../public/app.js"></script>
+
+<style>
+    #wrapper {
+    
+        display:block;
+    }
+    #particles-js{
+         background-color: skyblue;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+</style>
+<script>
+   
+</script>
+

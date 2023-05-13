@@ -1,4 +1,5 @@
-<div id="container1" class="vh-100" style="background-color: #f4f5f7;">
+<div id="particles-js"></div>
+<div id="container1" class="vh-100 bg-transparent" style="background-color: #f4f5f7;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-6 mb-4 mb-lg-0">
@@ -103,7 +104,8 @@
     </div>
 </div>
 
-
+<script src="../../public/particles.js"></script>
+<script src="../../public/app.js"></script>
 
 <script>
     function showContainer2() {
@@ -166,6 +168,17 @@
 
 
 <style>
+
+    #particles-js{
+        background-color:skyblue;
+        height:100vh;
+        width:98.7vw;
+        position:absolute;
+        z-index:-1;
+        top:100;
+        
+    }
+
     .gradient-custom {
         /* fallback for old browsers */
         background: #f6d365;
