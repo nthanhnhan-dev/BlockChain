@@ -110,17 +110,19 @@ exports.sendcoin = async (req, res, next) => {
         const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
         const sender_username = req.body.sender;
         const receiver_username = req.body.receiver
-        const reward = (await userM.getReward(sender_username))[0].REWARDS
+        const coin_sender = (await userM.getReward(sender_username))[0].REWARDS
+        const coin_receiver = (await userM.getReward(receiver_username))[0].REWARDS
         const user = await userM.getUserByName(req.session.user);
         const alluser = await userM.getAllUserExceptOwner(req.session.user);
+        const balance_sender = (await userM.getUserBalance(sender_username))[0].BALANCE
         if (compare) {
             const transaction_coin = {
                 FROM: (await moneyM.getAccountNoByUsername(sender_username))[0].ACCOUNT_NO,
                 TO: (await moneyM.getAccountNoByUsername(receiver_username))[0].ACCOUNT_NO,
-                AMOUNT: req.body.coin,
-                FEE: req.body.fee
+                AMOUNT: Number(req.body.coin),
+                FEE: Number(req.body.fee)
             }
-            if (reward < req.body.coin) {
+            if (coin_sender < req.body.coin) {
                 res.render("convertmoney/wrongpassword", {
                     errorBalance: "Not enough coin",
                     account: req.session.user,
@@ -129,10 +131,11 @@ exports.sendcoin = async (req, res, next) => {
                 })
             }
             else {
-
-                await userM.updateReward(reward - transaction_coin.AMOUNT, transaction_coin.FROM)
-
-                res.redirect('/sendmoney')
+                console.log(sender_username)
+                await userM.updateReward(sender_username, coin_sender - transaction_coin.AMOUNT)
+                await userM.updateReward(receiver_username, coin_receiver + transaction_coin.AMOUNT);
+                await userM.updateBalance(balance_sender - transaction_coin.FEE, sender_username)
+                res.redirect('/sendcoin')
             }
 
         }
