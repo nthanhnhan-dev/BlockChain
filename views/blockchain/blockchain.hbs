@@ -82,6 +82,7 @@
     #particles-js {
         background-color: skyblue;
         height: 170vh;
+        width:100vw;
         position: absolute;
         z-index: -1;
         top: 100;
@@ -189,17 +190,20 @@
         display: grid;
         height: 90%;
         max-height: 700px;
-        width: 95%;
+        width: 95vw;
         grid-gap: 1%;
         grid-template-columns: repeat(3, 1fr);
         border: 1px solid;
         margin-top: 5%;
-        margin-left: 2.5%;
+        margin-left: 2.5vw;
         margin-bottom: 5%;
 
     }
 
-    .container {}
+    .container {
+        padding:0;
+        margin:0
+    }
 
     .line {
         height: 1px;
