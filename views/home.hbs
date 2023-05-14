@@ -1,30 +1,4 @@
-<style>
-    .carousel-item {
-        position: relative;
-        display: none;
-        float: left;
-        width: 100%;
-        margin-right: -100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        transition: transform .6s ease-in-out;
-    }
-
-    #carouselExampleSlidesOnly {}
-
-    .carousel-inner {
-        margin-top: 5vh;
-    }
-    #particles-js{
-        background-color:skyblue;
-        height:150vh;
-        position:absolute;
-        z-index:-1;
-        top:100;
-        
-    }
-</style>
-<div id="paricles-js"></div>
+<div id="particles-js" class="position-absolute"></div>
 <div id="carouselExampleSlidesOnly " class="carousel slide mx-auto" data-bs-ride="carousel">
     <div class="carousel-inner ">
         <div class="carousel-item active">
@@ -43,3 +17,31 @@
 
 <script src="../../public/particles.js"></script>
 <script src="../../public/app.js"></script>
+
+<style>
+    .carousel-item {
+        position: relative;
+        display: none;
+        float: left;
+        width: 100%;
+        margin-right: -100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transition: transform .6s ease-in-out;
+    }
+
+    #carouselExampleSlidesOnly {}
+
+    .carousel-inner {
+        margin-top: 5vh;
+    }
+
+    #particles-js {
+        background-color: skyblue;
+        height: 150vh;
+        position: absolute;
+        z-index: -1;
+        top: 100;
+
+    }
+</style>

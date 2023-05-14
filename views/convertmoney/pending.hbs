@@ -1,5 +1,6 @@
+<div id="particles-js" class="position-absolute"></div>
+
 <div class="position-relative">
-    <div id="particles-js" class="position-absolute"></div>
     <div>
         <form action="/blockchain" method="POST">
             {{#if announce}}
@@ -19,6 +20,7 @@
                         <th scope="col">Sender</th>
                         <th scope="col">Receiver</th>
                         <th scope="col">Amount</th>
+                        <th scope="col">Time</th>
                     </tr>
                 </thead>
                 {{#each this.transaction}}
@@ -28,6 +30,8 @@
                     <td>{{Sender}}({{FROM}})</td>
                     <td>{{Receiver}}({{TO}})</td>
                     <td>{{AMOUNT}}</td>
+                    <td>{{TIMESTAMP}}</td>
+
 
 
                 </tbody>
@@ -50,7 +54,7 @@
     #particles-js {
         background-color: skyblue;
         height: 100%;
-        width:100vw;
+        width: 100vw;
         top: 0;
         left: 0;
         z-index: -1;

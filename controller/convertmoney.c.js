@@ -34,7 +34,8 @@ exports.pending = async (req, res, next) => {
                 FROM: (await moneyM.getAccountNoByUsername(sender_username))[0].ACCOUNT_NO,
                 TO: (await moneyM.getAccountNoByUsername(receiver_username))[0].ACCOUNT_NO,
                 AMOUNT: Number(req.body.money),
-                MESSAGE: req.body.message
+                MESSAGE: req.body.message,
+                TIMESTAMP: new Date(),
             }
             if (balance_sender < req.body.money) {
                 res.render("convertmoney/wrongpassword", {
@@ -92,6 +93,27 @@ exports.history = async (req, res, next) => {
         transaction: transaction_BD
     })
 }
+exports.coinhistory = async (req, res, next) => {
+    const user = req.session.user
+    const coin_transaction_BD = await userM.getCoinTransactionByUsername(user);
+    if (Object.keys(coin_transaction_BD).length === 0) {
+        res.render("convertmoney/history", {
+            account: req.session.user,
+            transaction: coin_transaction_BD
+        })
+    }
+    else {
+        coin_transaction_BD[0].ID_TRANSACTION = coin_transaction_BD[0].ID_TRANSACTION_COIN;
+
+        delete coin_transaction_BD[0].ID_TRANSACTION_COIN;
+
+        res.render("convertmoney/history", {
+            account: req.session.user,
+            transaction: coin_transaction_BD
+        })
+    }
+
+}
 exports.sendcoin = async (req, res, next) => {
     if (req.method === "GET") {
         const user = await userM.getUserByName(req.session.user);
@@ -120,7 +142,7 @@ exports.sendcoin = async (req, res, next) => {
                 FROM: (await moneyM.getAccountNoByUsername(sender_username))[0].ACCOUNT_NO,
                 TO: (await moneyM.getAccountNoByUsername(receiver_username))[0].ACCOUNT_NO,
                 AMOUNT: Number(req.body.coin),
-                FEE: Number(req.body.fee)
+                TIMESTAMP: new Date()
             }
             if (coin_sender < req.body.coin) {
                 res.render("convertmoney/wrongpassword", {
@@ -131,9 +153,10 @@ exports.sendcoin = async (req, res, next) => {
                 })
             }
             else {
+                await userM.addCoinTransaction(transaction_coin);
                 await userM.updateReward(sender_username, coin_sender - transaction_coin.AMOUNT)
                 await userM.updateReward(receiver_username, coin_receiver + transaction_coin.AMOUNT);
-                await userM.updateBalance(balance_sender - transaction_coin.FEE, sender_username)
+                await userM.updateBalance(balance_sender - Number(req.body.fee), sender_username)
                 res.redirect('/sendcoin')
             }
 

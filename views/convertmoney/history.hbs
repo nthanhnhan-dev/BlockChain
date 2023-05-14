@@ -1,36 +1,40 @@
-<div class="position-relative">
 <div id="particles-js" class="position-absolute"></div>
-<div>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Sender</th>
-            <th scope="col">Receiver</th>
-            <th scope="col">Amount</th>
-        </tr>
-    </thead>
-    {{#each this.transaction}}
-    <tbody>
-        <th scope="row">{{ID_TRANSACTION}}</th>
+<div class="position-relative">
 
-        <td>{{Sender}}({{FROM}})</td>
-        <td>{{Receiver}}({{TO}})</td>
-        <td>{{AMOUNT}}</td>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Receiver</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Time</th>
+
+                </tr>
+            </thead>
+            {{#each this.transaction}}
+            <tbody>
+                <th scope="row">{{ID_TRANSACTION}}</th>
+
+                <td>{{Sender}}({{FROM}})</td>
+                <td>{{Receiver}}({{TO}})</td>
+                <td>{{AMOUNT}}</td>
+                <td>{{TIMESTAMP}}</td>
 
 
-    </tbody>
-    {{/each}}
+            </tbody>
+            {{/each}}
 
-</table>
-</div>
+        </table>
+    </div>
 </div>
 <script src="../../public/particles.js"></script>
 <script src="../../public/app.js"></script>
 
 <style>
-    #particles-js{
-        {{!-- background-color: rgb(224, 208, 208); --}}
+    #particles-js {
+        background-color: skyblue;
         height: 100%;
         width: 100%;
         top: 0;
