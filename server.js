@@ -48,11 +48,14 @@ function requireLogin(req, res, next) {
 
 // Apply the middleware to all routes that require authentication
 app.use(requireLogin);
+app.use((err, req, res, next) => {
+    const status = err.status | 500;
+    res.status(status).send(err.message);
+});
 
 app.use('/', require('./routes/blocks.r'))
 
 app.use('/', require('./routes/convertmoney.r'));
-
 
 
 app.listen(port, function () {

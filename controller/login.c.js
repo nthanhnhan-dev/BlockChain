@@ -1,6 +1,10 @@
 const bcrypt = require("bcryptjs");
 const userM = require("../model/login.m");
-const saltRounds = 10;
+const EC = require('elliptic').ec;
+const salt = 10;
+
+
+
 exports.signin = async (req, res, next) => {
     if (req.method == "GET") {
         // if (req.session.user) res.redirect("/");
@@ -14,7 +18,7 @@ exports.signin = async (req, res, next) => {
         const userDatabase = await userM.getUserByName(username);
         if (userDatabase.length === 0) {
             res.render('login/signin', {
-                error: "Username invalid.Create one !",
+                error: "Username invalid.Please create !!!",
             });
         } else {
             const compare = bcrypt.compareSync(password, userDatabase[0].PASSWORD);
@@ -42,7 +46,7 @@ exports.signup = async (req, res, next) => {
         const existAccount = await userM.checkExist(
             req.body.f_Username,
             req.body.f_Email,
-            req.body.f_account_no,
+
         );
         if (existAccount[0].exist == 1) {
             res.render('login/signup', {
@@ -50,10 +54,17 @@ exports.signup = async (req, res, next) => {
             })
         }
         else if (existAccount[0].exist == 0) {
-            const passwordHased = await bcrypt.hash(req.body.f_Password, saltRounds);
+
+
+            const passwordHased = await bcrypt.hash(req.body.f_Password, salt);
+            const ec = new EC('secp256k1');
+
+            const keyPair = ec.genKeyPair();
+            const publicKey = keyPair.getPublic('hex').length();
+            const privateKey = keyPair.getPrivate('hex');
             const user = {
 
-                ACCOUNT_NO: req.body.f_account_no,
+                ACCOUNT_NO: publicKey,
                 OWNER: req.body.f_Name,
                 BALANCE: req.body.f_balance,
                 USERNAME: req.body.f_Username,

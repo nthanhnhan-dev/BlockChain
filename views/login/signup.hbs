@@ -40,12 +40,7 @@
                                         placeholder="asb@gmail.com" id="reg_email" onchange="regexemail()" />
                                 </div>
 
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="reg_account_no"><b>Account Number</b> </label>
-                                    <input type="text" name="f_account_no" class="form-control form-control-lg"
-                                        placeholder="10-11 numbers" id="reg_account_no" onchange="regexnumberphone()" />
 
-                                </div>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="reg_balance"><b>Balance</b> </label>
                                     <input type="text" name="f_balance" class="form-control form-control-lg"
@@ -135,25 +130,12 @@
             checkemail = false;
         }
     }
-    function regexnumberphone() {
-        let phoneRegex = /^0[0-9]{9,10}$/;
-        phonevalue = document.getElementById("reg_account_no").value;
-        phone = document.getElementById("reg_account_no");
-        if (phoneRegex.test(phonevalue)) {
-            phone.style.color = "Black"
-            checkphone = true;
-        }
-        else {
-            console.log(phonevalue)
-            phone.style.color = "red"
-            checkphone = false;
-        }
-    }
+
     function regexbalance() {
         let balanceRegex = /^[0-9]+$/;
         balancevalue = document.getElementById("reg_balance").value;
         balance = document.getElementById("reg_balance");
-        if (balanceRegex.test(balancevalue) && parseInt(balancevalue) > 100000) {
+        if (balanceRegex.test(balancevalue) && parseInt(balancevalue) >= 100000) {
             balance.style.color = "Black"
             checkbalance = true;
         }
@@ -181,7 +163,7 @@
     }
 
     function checkbutton() {
-        if (checkuser && checkemail && checkbalance && checkpw && checkphone) {
+        if (checkuser && checkemail && checkbalance && checkpw) {
             document.getElementById("button").disabled = false;
         }
         else {
