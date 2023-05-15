@@ -60,7 +60,7 @@ exports.signup = async (req, res, next) => {
             const ec = new EC('secp256k1');
 
             const keyPair = ec.genKeyPair();
-            const publicKey = keyPair.getPublic('hex').length();
+            const publicKey = keyPair.getPublic('hex');
             const privateKey = keyPair.getPrivate('hex');
             const user = {
 
