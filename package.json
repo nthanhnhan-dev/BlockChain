@@ -55,6 +55,7 @@
     "domexception": "^4.0.0",
     "ee-first": "^1.1.1",
     "electron-to-chromium": "^1.4.368",
+    "elliptic": "^6.5.4",
     "emoji-regex": "^8.0.0",
     "encodeurl": "^1.0.2",
     "enhanced-resolve": "^5.13.0",
