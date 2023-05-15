@@ -47,25 +47,26 @@
         const n = listcolor.length;
         const hashBlocks = document.querySelectorAll('.curhash');
 
-        let i = 2
-
         const connections = document.querySelectorAll('.connection');
         connections.forEach(connection => connection.parentNode.removeChild(connection));
 
-
         hashBlocks.forEach((block, index) => {
 
-            // Lấy khối hash của khối tiếp theo
-            block.style.color = listcolor[index % n]
+            // Lấy prehash của khối tiếp theo
+            const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
 
-            if (i < hashBlocks.length) {
-                const nextBlock = block.parentNode.nextElementSibling.querySelector('.prehash');
-                console.log(nextBlock)
+            // Thiết lập màu sắc của khối curhash hiện tại
+            block.style.color = listcolor[index % n];
 
-                nextBlock.style.color = listcolor[index % n]
-                i++
-                console.log(i)
+            if (nextBlock) {
+                // Thiết lập màu sắc của prehash của khối tiếp theo
+                nextBlock.style.color = listcolor[index % n];
 
+                // Tạo kết nối giữa khối curhash hiện tại và prehash của khối tiếp theo
+                const connection = document.createElement('div');
+                connection.classList.add('connection');
+                connection.style.borderColor = listcolor[index % n];
+                block.parentNode.appendChild(connection);
             }
         });
     }
