@@ -72,7 +72,7 @@
                                 <div class="d-flex justify-content-center">
                                     <button id="button"
                                         class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                                        type="submit">Register</button>
+                                        type="submit" disabled="true">Register</button>
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
@@ -96,7 +96,7 @@
     #particles-js {
         background-color: skyblue;
         height: 100%;
-        width:100vw;
+        width: 100vw;
         top: 0;
         left: 0;
         z-index: -1;
@@ -166,7 +166,7 @@
     function checkpassword() {
         pw = document.getElementById("reg_password")
         cf_pw = document.getElementById("reg_confirmpassword")
-        if (pw.value == cf_pw.value) {
+        if ((pw.value == cf_pw.value) && pw.value !== "" && cf_pw !== "") {
             console.log(pw.value)
             console.log(cf_pw.value)
             cf_pw.style.color = "Black"
