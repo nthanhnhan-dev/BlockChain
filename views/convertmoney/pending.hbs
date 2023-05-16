@@ -17,16 +17,16 @@
                 {{/if}}
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr class="pending_col">
                             <th scope="col">#</th>
-                            <th scope="col">Sender</th>
-                            <th scope="col">Receiver</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Time</th>
+                            <th scope="col">SENDER</th>
+                            <th scope="col">RECEIVER</th>
+                            <th scope="col">AMOUNT</th>
+                            <th scope="col">TIME</th>
                         </tr>
                     </thead>
                     {{#each this.transaction}}
-                    <tbody>
+                    <tbody class="pending_col">
                         <th scope="row">{{ID_TRANSACTION}}</th>
 
                         <td>{{Sender}}</td>
@@ -52,6 +52,13 @@
     .wrapper {
 
         position: relative;
+    }
+
+    .pending_col {
+        background-color: white;
+        opacity: 0.8;
+        font-weight: bold;
+
     }
 
     #particles-js {

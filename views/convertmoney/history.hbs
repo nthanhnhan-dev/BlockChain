@@ -5,21 +5,23 @@
 
         <div>
             <table class="table">
-                <thead>
+                <thead class="pending_col">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Sender</th>
-                        <th scope="col">Receiver</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Time</th>
+                        <th scope="col">SENDER</th>
+                        <th scope="col">RECEIVER</th>
+                        <th scope="col">AMOUNT</th>
+                        <th scope="col">TIME</th>
 
                     </tr>
                 </thead>
                 {{#each this.transaction}}
-                <tbody>
+                <tbody class="pending_col">
                     <th scope="row">{{ID_TRANSACTION}}</th>
 
-                    <td>{{Sender}}</td>
+                    <td>
+                        {{Sender}}
+                    </td>
                     <td>{{Receiver}}</td>
                     <td>{{AMOUNT}}</td>
                     <td>{{TIMESTAMP}}</td>
@@ -45,6 +47,12 @@
         top: 0;
         left: 0;
         z-index: -1;
+    }
+
+    .pending_col {
+        background-color: white;
+        opacity: 0.8;
+        font-weight: bold;
     }
 
     .position-relative {

@@ -1,7 +1,7 @@
 <div id="particles-js" class="position-absolute"></div>
 
 <div id="container1" class="vh-100 bg-transparent" style="background-color: #f4f5f7;">
-    <div class="container py-5 h-100">
+    <div class="container py-5 h-100" style="opacity: 0.9;">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-6 mb-4 mb-lg-0">
                 <div class="card mb-3" style="border-radius: .5rem;">
@@ -16,21 +16,23 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body p-4">
-                                <h6>Information</h6>
+                                <h6 style="font-weight: bold;">Information</h6>
                                 <hr class="mt-0 mb-4">
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
-                                        <h6>Email</h6>
+                                        <h6 style="font-weight: bold;">Email</h6>
                                         <p class="text-muted">{{user.EMAIL}}</p>
                                     </div>
                                     <div class="col-6 mb-3">
-                                        <h6>Account Number</h6>
+                                        <h6 style="font-weight: bold;">Account Number</h6>
                                         <p class="text-muted">{{user.ACCOUNT_NO}}</p>
                                     </div>
                                     <div class="two-buttons">
-                                        <button type="submit" class="btn btn-primary" onclick="showContainer2()">Send
+                                        <button type="submit" class="btn btn-primary" style="font-weight: bold;"
+                                            onclick="showContainer2()">Send
                                             coin</button>
-                                        <a class="btn btn-primary" aria-current="page" href="/coinhistory">History</a>
+                                        <a class="btn btn-primary" aria-current="page" style="font-weight: bold;"
+                                            href="/coinhistory">History</a>
                                     </div>
                                 </div>
 
@@ -49,12 +51,12 @@
     <form id="payment-form" action="/sendcoin" method="POST">
         <div>
             <div class="mb-3">
-                <label for="sender" class="form-label">Sender</label>
+                <label for="sender" class="form-label" style="font-weight: bold;">Sender</label>
                 <input type="text" name="sender" value={{user.USERNAME}} class="form-control"
                     aria-describedby="emailHelp" readonly>
             </div>
             <div class="mb-3">
-                <label for="receiver" class="form-label">Receiver</label>
+                <label for="receiver" class="form-label" style="font-weight: bold;">Receiver</label>
                 <select class="form-select" name="receiver" aria-label="Default select example">
                     {{#each this.alluser}}
                     <option value={{USERNAME}}>{{USERNAME}}</option>
@@ -72,22 +74,24 @@
             </div>
             {{/if}}
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Your Password</label>
+                <label for="exampleInputPassword1" class="form-label" style="font-weight: bold;">Your Password</label>
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1">
             </div>
             <div>
                 <div class="mb-3">
-                    <label for="coin" class="form-label">Coin</label>
-                    <input type="number" name="coin" placeholder="1,2,3..." class="form-control" id="coin"
-                        aria-describedby="emailHelp">
+                    <label for="coin" class="form-label" style="font-weight: bold;">Coin</label>
+                    <input type="number" name="coin" class="form-control" id="coin" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="fee" class="form-label">Fee</label>
+                    <label for="fee" class="form-label" style="font-weight: bold;">Fee</label>
                     <input type="number" name="fee" value="50" class="form-control" id="fee"
                         aria-describedby="emailHelp" readonly>
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="send">Send</button>
+                <button type="submit" class="btn btn-primary" id="send" style="font-weight: bold;">Send</button>
+                <button class="btn btn-secondary" id="send" style="font-weight: bold;"
+                    onclick="showContainer1()">Back</button>
+
                 {{!-- <button type="submit" class="btn btn-primary"><a aria-current="page"
                         href="/pending"></a>Send</button> --}}
                 {{!-- <button type="submit" class="btn btn-primary"

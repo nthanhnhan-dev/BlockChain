@@ -1,7 +1,7 @@
 <div class="container">
     <div id="particles-js"></div>
 
-    <div id="panel-blockchain">
+    <div id="panel-blockchain" class=" pending_col">
 
         {{#each this.data}}
         <div class="block">
@@ -91,14 +91,19 @@
         top: 100;
     }
 
+    .pending_col {
+        background-color: rgb(255, 255, 255);
+        opacity: 0.9;
+        border-radius: 3%;
+    }
 
 
 
     .block {
         position: relative;
-        border: 1px #ccc;
+        border: 1px #f1eded;
 
-        background-color: white;
+        background-color: rgb(255, 255, 255);
         text-align: justify;
         border: 1px solid;
         display: grid;
@@ -155,7 +160,7 @@
         animation: spin 1.5s forwards;
         height: 100%;
         background-position: center;
-        background-size:cover;
+        background-size: cover;
     }
 
     .content:hover .contentm {
@@ -196,7 +201,7 @@
         width: 95vw;
         grid-gap: 1%;
         grid-template-columns: repeat(3, 1fr);
-        border: 1px solid;
+
         margin-top: 5%;
         margin-left: 2.5vw;
         margin-bottom: 5%;
