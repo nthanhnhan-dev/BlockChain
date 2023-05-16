@@ -147,7 +147,7 @@ exports.sendcoin = async (req, res, next) => {
                 TIMESTAMP: new Date()
             }
             if (coin_sender < req.body.coin) {
-                res.render("convertmoney/wrongpassword", {
+                res.render("convertmoney/wrongpassword_coin", {
                     errorBalance: "Not enough coin",
                     account: req.session.user,
                     user: user[0],
@@ -165,7 +165,7 @@ exports.sendcoin = async (req, res, next) => {
         }
         else {
 
-            res.render("convertmoney/wrongpassword", {
+            res.render("convertmoney/wrongpassword_coin", {
                 errorPassword: "Wrong password",
                 account: req.session.user,
                 user: user[0],
