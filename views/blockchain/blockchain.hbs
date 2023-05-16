@@ -1,7 +1,7 @@
 <div class="container">
     <div id="particles-js"></div>
 
-    <div id="panel-blockchain">
+    <div id="panel-blockchain" class=" pending_col">
 
         {{#each this.data}}
         <div class="block">
@@ -11,19 +11,20 @@
             </div>
             <div class="content">
                 <div class="contentm">
-                    <p>Sender: </p> {{Sender}}
+                    <br>
+                    <p>Sender: </p>{{Sender}}
                     </br>
                     <p>Receiver: </p> {{Receiver}}
                     </br>
                     <p>Content: </p> {{MESSAGE}}
                     </br>
-                    </br>
+
                     <p>Amount: </p> {{AMOUNT}}
                     </br>
                     <p id="timeblock">Time: </p> {{TIMESTAMP}}
                     </br>
                     </br>
-                    <p id="idblock">Block {{ID_BLOCK}}</p>
+                    <p id="idblock">BLOCK {{ID_BLOCK}}</p>
                 </div>
             </div>
             <div class="curhash">
@@ -91,27 +92,35 @@
         top: 100;
     }
 
+    .pending_col {
+        background-color: rgb(255, 255, 255);
+        opacity: 0.9;
+        border-radius: 3%;
+    }
 
 
 
     .block {
         position: relative;
-        border: 1px #ccc;
 
-        background-color: white;
+
+        background-color: rgb(255, 255, 255);
         text-align: justify;
-        border: 1px solid;
+        border: 5px solid;
+
         display: grid;
         grid-template-rows: 1fr 4fr 1fr;
         margin: 20px;
         border-radius: 3%;
+
 
     }
 
 
     #idblock {
         text-align: center;
-        padding-left: 11vw;
+        padding-left: 10vw;
+        font-style: italic;
     }
 
     #timeblock {
@@ -119,11 +128,12 @@
     }
 
     .block p {
-        font-weight: 700;
+        font-weight: 1000;
         border: 0;
         padding: 0;
         display: inline-block;
         color: black;
+        font-size: larger;
 
     }
 
@@ -155,7 +165,7 @@
         animation: spin 1.5s forwards;
         height: 100%;
         background-position: center;
-        background-size:cover;
+        background-size: cover;
     }
 
     .content:hover .contentm {
@@ -196,7 +206,7 @@
         width: 95vw;
         grid-gap: 1%;
         grid-template-columns: repeat(3, 1fr);
-        border: 1px solid;
+
         margin-top: 5%;
         margin-left: 2.5vw;
         margin-bottom: 5%;

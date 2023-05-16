@@ -103,9 +103,11 @@ exports.coinhistory = async (req, res, next) => {
         })
     }
     else {
-        coin_transaction_BD[0].ID_TRANSACTION = coin_transaction_BD[0].ID_TRANSACTION_COIN;
+        for (var i = 0; i < Object.keys(coin_transaction_BD).length; i++) {
+            coin_transaction_BD[i].ID_TRANSACTION = coin_transaction_BD[i].ID_TRANSACTION_COIN;
 
-        delete coin_transaction_BD[0].ID_TRANSACTION_COIN;
+            delete coin_transaction_BD[0].ID_TRANSACTION_COIN;
+        }
 
         res.render("convertmoney/history", {
             account: req.session.user,

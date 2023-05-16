@@ -1,48 +1,49 @@
-<div class="wrapper">
 <div id="particles-js" class="position-absolute"></div>
 
-<div class="position-relative">
-    <div>
-        <form action="/blockchain" method="POST">
-            {{#if announce}}
-            <div class="alert alert-warning d-flex align-items-center" role="alert">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-                    <use xlink:href="#exclamation-triangle-fill" />
-                </svg>
-                <div>
-                    {{announce}}
+<div class="wrapper">
+
+    <div class="position-relative">
+        <div>
+            <form action="/blockchain" method="POST">
+                {{#if announce}}
+                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                        <use xlink:href="#exclamation-triangle-fill" />
+                    </svg>
+                    <div>
+                        {{announce}}
+                    </div>
                 </div>
-            </div>
-            {{/if}}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Sender</th>
-                        <th scope="col">Receiver</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Time</th>
-                    </tr>
-                </thead>
-                {{#each this.transaction}}
-                <tbody>
-                    <th scope="row">{{ID_TRANSACTION}}</th>
+                {{/if}}
+                <table class="table">
+                    <thead>
+                        <tr class="pending_col">
+                            <th scope="col">#</th>
+                            <th scope="col">SENDER</th>
+                            <th scope="col">RECEIVER</th>
+                            <th scope="col">AMOUNT</th>
+                            <th scope="col">TIME</th>
+                        </tr>
+                    </thead>
+                    {{#each this.transaction}}
+                    <tbody class="pending_col">
+                        <th scope="row">{{ID_TRANSACTION}}</th>
 
-                    <td>{{Sender}}</td>
-                    <td>{{Receiver}}</td>
-                    <td>{{AMOUNT}}</td>
-                    <td>{{TIMESTAMP}}</td>
-
+                        <td>{{Sender}}</td>
+                        <td>{{Receiver}}</td>
+                        <td>{{AMOUNT}}</td>
+                        <td>{{TIMESTAMP}}</td>
 
 
-                </tbody>
-                {{/each}}
 
-            </table>
-            <input type="submit" class="btn btn-warning mr-2 font-weight-bold" value="MINING">
-        </form>
+                    </tbody>
+                    {{/each}}
+
+                </table>
+                <input type="submit" class="btn btn-warning mr-2 font-weight-bold" value="MINING">
+            </form>
+        </div>
     </div>
-</div>
 </div>
 <script src="../../public/particles.js"></script>
 <script src="../../public/app.js"></script>
@@ -50,12 +51,19 @@
 <style>
     .wrapper {
 
-        position:relative;
+        position: relative;
+    }
+
+    .pending_col {
+        background-color: white;
+        opacity: 0.8;
+        font-weight: bold;
+
     }
 
     #particles-js {
         background-color: skyblue;
-        position:relative;
+        position: relative;
         height: 100%;
         width: 100vw;
         top: 0;

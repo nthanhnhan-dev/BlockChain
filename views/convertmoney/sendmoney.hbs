@@ -1,6 +1,6 @@
 <div id="particles-js"></div>
 <div id="container1" class="vh-100 bg-transparent" style="background-color: #f4f5f7;">
-    <div class="container py-5 h-100">
+    <div class="container py-5 h-100" style="opacity: 0.9;">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-6 mb-4 mb-lg-0">
                 <div class="card mb-3" style="border-radius: .5rem;">
@@ -15,21 +15,23 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body p-4">
-                                <h6>Information</h6>
+                                <h6 style="font-weight: bold;">INFORMATION</h6>
                                 <hr class="mt-0 mb-4">
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
-                                        <h6>Email</h6>
+                                        <h6 style="font-weight: bold;">EMAIL</h6>
                                         <p class="text-muted">{{user.EMAIL}}</p>
                                     </div>
                                     <div class="col-6 mb-3">
-                                        <h6>Account Number</h6>
+                                        <h6 style="font-weight: bold;">ACCOUNT NUMBER</h6>
                                         <p class="text-muted">{{user.ACCOUNT_NO}}</p>
                                     </div>
                                     <div class="two-buttons">
-                                        <button type="submit" class="btn btn-primary" onclick="showContainer2()">Send
-                                            money</button>
-                                        <a class="btn btn-primary" aria-current="page" href="/history">History</a>
+                                        <button type="submit" class="btn btn-primary" style="font-weight: bold;"
+                                            onclick="showContainer2()">SEND
+                                            MONEY</button>
+                                        <a class="btn btn-primary" aria-current="page" style="font-weight: bold;"
+                                            href="/history">HISTORY</a>
                                     </div>
                                 </div>
 
@@ -48,12 +50,12 @@
     <form id="payment-form" action="/pending" method="POST">
         <div>
             <div class="mb-3">
-                <label for="sender" class="form-label">Sender</label>
+                <label for="sender" class="form-label" style="font-weight: bold;">SENDER</label>
                 <input type="text" name="sender" value={{user.USERNAME}} class="form-control"
                     aria-describedby="emailHelp" readonly>
             </div>
             <div class="mb-3">
-                <label for="receiver" class="form-label">Receiver</label>
+                <label for="receiver" class="form-label" style="font-weight: bold;">RECEIVER</label>
                 <select class="form-select" name="receiver" aria-label="Default select example">
                     {{#each this.alluser}}
                     <option value={{USERNAME}}>{{USERNAME}}</option>
@@ -71,25 +73,22 @@
             </div>
             {{/if}}
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Your Password</label>
+                <label for="exampleInputPassword1" class="form-label" style="font-weight: bold;">YOUR PASSWORD</label>
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1">
             </div>
             <div>
                 <div class="mb-3">
-                    <label for="money" class="form-label">Money</label>
+                    <label for="money" class="form-label" style="font-weight: bold;">MONEY</label>
                     <input type="number" name="money" class="form-control" id="money" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
+                    <label for="message" class="form-label" style="font-weight: bold;">MESSAGE</label>
                     <input type="text" name="message" class="form-control" id="message" aria-describedby="emailHelp">
                 </div>
-                <button type="submit" class="btn btn-primary" id="send">Send</button>
-                {{!-- <button type="submit" class="btn btn-primary"><a aria-current="page"
-                        href="/pending"></a>Send</button> --}}
-                {{!-- <button type="submit" class="btn btn-primary"
-                    onclick="return confirm('Bạn có chắc chắn muốn chuyển tiền không?')"><a aria-current="page"
-                        href="/pending"></a>Send</button> --}}
+                <button type="submit" class="btn btn-primary" id="send" style="font-weight: bold;">SEND</button>
 
+                <button class="btn btn-secondary" id="send" style="font-weight: bold;"
+                    onclick="showContainer1()">BACK</button>
                 </br>
                 </br>
             </div>

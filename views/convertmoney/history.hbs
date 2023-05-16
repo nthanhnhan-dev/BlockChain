@@ -1,44 +1,46 @@
-<div class="wrapper">
 <div id="particles-js" class="position-absolute"></div>
-<div class="position-relative">
+<div class="wrapper">
 
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Sender</th>
-                    <th scope="col">Receiver</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Time</th>
+    <div class="position-relative">
 
-                </tr>
-            </thead>
-            {{#each this.transaction}}
-            <tbody>
-                <th scope="row">{{ID_TRANSACTION}}</th>
+        <div>
+            <table class="table">
+                <thead class="pending_col">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">SENDER</th>
+                        <th scope="col">RECEIVER</th>
+                        <th scope="col">AMOUNT</th>
+                        <th scope="col">TIME</th>
 
-                <td>{{Sender}}</td>
-                <td>{{Receiver}}</td>
-                <td>{{AMOUNT}}</td>
-                <td>{{TIMESTAMP}}</td>
+                    </tr>
+                </thead>
+                {{#each this.transaction}}
+                <tbody class="pending_col">
+                    <th scope="row">{{ID_TRANSACTION}}</th>
+
+                    <td>
+                        {{Sender}}
+                    </td>
+                    <td>{{Receiver}}</td>
+                    <td>{{AMOUNT}}</td>
+                    <td>{{TIMESTAMP}}</td>
 
 
-            </tbody>
-            {{/each}}
+                </tbody>
+                {{/each}}
 
-        </table>
+            </table>
+        </div>
     </div>
-</div>
 </div>
 
 <script src="../../public/particles.js"></script>
 <script src="../../public/app.js"></script>
 
 <style>
-    
     #particles-js {
-        position:relative;
+        position: relative;
         background-color: skyblue;
         height: 100%;
         width: 100%;
@@ -46,11 +48,19 @@
         left: 0;
         z-index: -1;
     }
-    .position-relative{
-        position:relative;
-        height:100%;
+
+    .pending_col {
+        background-color: white;
+        opacity: 0.8;
+        font-weight: bold;
     }
-    .wrapper{
-        position:relative;
+
+    .position-relative {
+        position: relative;
+        height: 100%;
+    }
+
+    .wrapper {
+        position: relative;
     }
 </style>
